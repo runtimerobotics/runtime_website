@@ -42,6 +42,15 @@ const socialImage = Astro.site ? new URL(`${base}${image}`, Astro.site) : `${bas
     <meta name="twitter:image" content={socialImage} />
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X8ZMNHMG4H"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-X8ZMNHMG4H');
+    </script>
+
     <title>{title}</title>
   </head>
   <body>
