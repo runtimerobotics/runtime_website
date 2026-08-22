@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout title="Page not found | RUNTIME Robotics">
+  <Header />
+  <main class="page-main">
+    <section class="page-hero">
+      <div class="container narrow">
+        <span class="kicker">404</span>
+        <h1>Page not found</h1>
+        <p>The page may have moved during the WordPress-to-static migration.</p>
+        <a class="button" href={base}>Back to home</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

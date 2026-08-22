@@ -1,0 +1,31 @@
+services:
+  dev:
+    build:
+      context: .
+      target: development
+    container_name: runtime-robotics-dev
+    command: npm run dev -- --host 0.0.0.0
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    environment:
+      # Polling makes file watching reliable on Docker Desktop/WSL/Linux bind mounts.
+      CHOKIDAR_USEPOLLING: "true"
+    restart: unless-stopped
+
+  preview:
+    build:
+      context: .
+      target: production
+      args:
+        SITE_URL: ${SITE_URL:-http://localhost:8080}
+        BASE_PATH: ${BASE_PATH:-}
+    container_name: runtime-robotics-preview
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  node_modules:

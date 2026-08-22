@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const services = [
+  {
+    title: 'Robot Simulation',
+    image: 'sim_thumbnail.webp',
+    text: 'Build and validate robot behavior in Gazebo, Webots, NVIDIA Isaac Sim and other simulators before deploying to hardware.'
+  },
+  {
+    title: 'ROS Navigation',
+    image: 'navigation_thumbnail.webp',
+    text: 'Mapping, localization, planning and autonomous navigation solutions for mobile robots using ROS and ROS 2.'
+  },
+  {
+    title: 'Robot Manipulation',
+    image: 'manipulation_ros1.webp',
+    text: 'Software for pick-and-place, inspection, bin-picking and motion-planning workflows for robotic arms.'
+  },
+  {
+    title: 'ROS Perception',
+    image: 'manipulation_ros2.webp',
+    text: '2D and 3D perception pipelines using OpenCV, point clouds and modern robot-vision tooling.'
+  },
+  {
+    title: 'ROS Driver Development',
+    image: 'ros_driver2.webp',
+    text: 'ROS interfaces and hardware drivers for cameras, LiDARs, embedded controllers and custom robot components.'
+  },
+  {
+    title: 'Industrial ROS Training',
+    image: 'training.webp',
+    text: 'Practical ROS 1 and ROS 2 training for engineering teams, universities and robotics organizations.'
+  }
+];
+
+const projects = [
+  {
+    title: 'Disinfection Robots',
+    category: 'navigation',
+    image: 'disinfection.webp',
+    text: 'Navigation and robot-software work for autonomous disinfection platforms, including integration with low-level controllers.'
+  },
+  {
+    title: 'Food Delivery Robots',
+    category: 'navigation',
+    image: 'food_delivery_robot.webp',
+    text: 'Mapping, path planning, navigation and simulation workflows for indoor and outdoor delivery robots.'
+  },
+  {
+    title: 'Industrial Robot Arms',
+    category: 'manipulation',
+    image: 'pick_place.webp',
+    text: 'ROS 2 driver integration, gripper control and pick-and-place applications with perception support.'
+  },
+  {
+    title: 'Autonomous Mobile Robots',
+    category: 'simulation',
+    image: 'amr_robot.webp',
+    text: 'Navigation tuning, planners, control integration and realistic simulation for AMR products.'
+  }
+];
+
+const clients = [
+  'Apress', 'Duplex', 'Bedestrian', 'Remy Robotics', 'Robomania', 'Swift',
+  'CircleX', 'StreetDrone', 'Viscon', 'Wipro', 'Tata Motors', 'TCS',
+  'Spotless', 'IBM', 'GM', 'ArkRobot', 'Packt'
+];
+---
+<BaseLayout>
+  <Header />
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> Robot software engineering</div>
+          <h1>Powering your robots using <em>ROS</em></h1>
+          <p>
+            Engineering support for ROS and ROS 2—from simulation and navigation to manipulation,
+            perception, hardware drivers and industrial training.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#services">Explore services</a>
+            <a class="button button-ghost" href="#contact">Discuss a project</a>
+          </div>
+          <div class="hero-points" aria-label="Capabilities">
+            <span>ROS 1 & ROS 2</span>
+            <span>Remote development</span>
+            <span>Simulation to hardware</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Autonomous mobile robot project">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="robot-card">
+            <img src={`${base}images/amr_robot.webp`} alt="Autonomous mobile robot" width="480" height="480" />
+            <div class="robot-status"><span></span> ROS system online</div>
+          </div>
+          <div class="floating-card card-top">
+            <strong>Navigation</strong>
+            <span>Mapping · Planning · Control</span>
+          </div>
+          <div class="floating-card card-bottom">
+            <strong>Simulation</strong>
+            <span>Gazebo · Webots · Isaac Sim</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Capabilities</span><h2>Our services</h2></div>
+          <p>Focused engineering services for teams building real robots and robot products.</p>
+        </div>
+        <div class="card-grid service-grid">
+          {services.map((service, index) => (
+            <article class="service-card reveal" style={`--delay:${index * 60}ms`}>
+              <div class="service-image"><img src={`${base}images/${service.image}`} alt="" loading="lazy" /></div>
+              <div class="service-content">
+                <span class="service-index">0{index + 1}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Selected work</span><h2>Robot projects</h2></div>
+          <p>Examples of projects covering navigation, manipulation, simulation and robot integration.</p>
+        </div>
+
+        <div class="filter-bar reveal" role="group" aria-label="Filter projects">
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="navigation">Navigation</button>
+          <button class="filter-button" data-filter="manipulation">Manipulation</button>
+          <button class="filter-button" data-filter="simulation">Simulation</button>
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project) => (
+            <article class="project-card reveal" data-project data-category={project.category}>
+              <div class="project-image">
+                <img src={`${base}images/${project.image}`} alt={project.title} loading="lazy" />
+              </div>
+              <div class="project-content">
+                <span>{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section clients-section" id="clients">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Experience</span><h2>Organizations we have worked with</h2></div>
+          <p>A selection of organizations shown on the current RUNTIME Robotics website.</p>
+        </div>
+        <div class="client-cloud reveal">
+          {clients.map((client) => <span>{client}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="team">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">People</span><h2>Our team</h2></div>
+          <p>ROS developers and educators focused on practical robot-software delivery.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card reveal">
+            <img src={`${base}images/lentin.webp`} alt="Lentin Joseph" loading="lazy" />
+            <div><span>Co-Founder</span><h3>Lentin Joseph</h3><p>ROS developer and educator, author of multiple books on ROS and robotics.</p></div>
+          </article>
+          <article class="team-card reveal">
+            <img src={`${base}images/aleena.webp`} alt="Aleena Johny" loading="lazy" />
+            <div><span>Co-Founder</span><h3>Aleena Johny</h3><p>ROS software developer, educator and co-author working across robot-software projects and training.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img src={`${base}images/about_us.webp`} alt="Engineering team discussion" loading="lazy" />
+          <div class="about-badge"><strong>ROS</strong><span>focused robotics engineering</span></div>
+        </div>
+        <div class="about-copy reveal">
+          <span class="kicker">Our story</span>
+          <h2>Engineering robots from software outward</h2>
+          <p>
+            RUNTIME Robotics works with commercial and research teams on robot software, simulation,
+            algorithms, perception and integration. The goal is to help teams turn robotics ideas into
+            reliable systems while sharing practical knowledge through training.
+          </p>
+          <div class="feature-list">
+            <div><strong>Research + commercial</strong><span>Support from prototypes through product integration.</span></div>
+            <div><strong>Remote friendly</strong><span>Development workflows designed for distributed robot teams.</span></div>
+            <div><strong>Education</strong><span>Hands-on ROS learning for engineers and students.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section blog-preview section-soft" id="blog">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Knowledge</span><h2>From the blog</h2></div>
+          <a class="text-link" href={`${base}blog/`}>View all articles →</a>
+        </div>
+        <a class="blog-feature reveal" href={`${base}10-years-of-ros-consulting-and-training-what-did-i-learn/`}>
+          <div>
+            <span class="blog-date">February 14, 2024</span>
+            <h3>10 years of Remote ROS Development & Training: key lessons learned</h3>
+            <p>A long-form reflection on building a remote career and business around ROS development, consulting and education.</p>
+          </div>
+          <span class="blog-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="kicker">Get in touch</span>
+          <h2>Need help with a ROS project?</h2>
+          <p>Tell us what robot, ROS version and development challenge you are working on.</p>
+          <div class="contact-links">
+            <a href="mailto:runtimerobotics@gmail.com"><span>Email</span><strong>runtimerobotics@gmail.com</strong></a>
+            <a href="tel:+918907590702"><span>Phone / WhatsApp</span><strong>+91 8907590702</strong></a>
+            <div><span>Location</span><strong>Kochi, Kerala, India</strong></div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" data-contact-form data-endpoint="">
+          <div class="form-row">
+            <label>First name<input name="firstName" autocomplete="given-name" required /></label>
+            <label>Last name<input name="lastName" autocomplete="family-name" /></label>
+          </div>
+          <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+          <label>Message<textarea name="message" rows="6" required placeholder="Robot platform, ROS version, scope, timeline..."></textarea></label>
+          <button class="button" type="submit">Send message</button>
+          <p class="form-note" data-form-status>
+            Static fallback opens your email client. Add a Formspree endpoint to submit directly from the page.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          reveal.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((element) => reveal.observe(element));
+
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const projectCards = document.querySelectorAll('[data-project]');
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterButtons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+        projectCards.forEach((card) => {
+          const show = filter === 'all' || card.getAttribute('data-category') === filter;
+          card.toggleAttribute('hidden', !show);
+        });
+      });
+    });
+
+    const form = document.querySelector('[data-contact-form]');
+    const status = document.querySelector('[data-form-status]');
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const endpoint = form.getAttribute('data-endpoint');
+
+      if (!endpoint) {
+        const name = `${data.get('firstName') || ''} ${data.get('lastName') || ''}`.trim();
+        const subject = encodeURIComponent(`RUNTIME Robotics website enquiry from ${name || 'visitor'}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${data.get('email')}\n\n${data.get('message')}`);
+        window.location.href = `mailto:runtimerobotics@gmail.com?subject=${subject}&body=${body}`;
+        return;
+      }
+
+      try {
+        status.textContent = 'Sending…';
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error('Request failed');
+        form.reset();
+        status.textContent = 'Thanks — your message was sent.';
+      } catch {
+        status.textContent = 'Could not send the form. Please email runtimerobotics@gmail.com.';
+      }
+    });
+  </script>
+</BaseLayout>

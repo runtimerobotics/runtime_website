@@ -1,0 +1,30 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href={base}>
+        <span>RUNTIME <strong>Robotics</strong></span>
+      </a>
+      <p>ROS-focused robot software engineering, simulation and technical training.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href={`${base}#services`}>Services</a>
+      <a href={`${base}#projects`}>Projects</a>
+      <a href={`${base}#team`}>Team</a>
+      <a href={`${base}blog/`}>Blog</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:runtimerobotics@gmail.com">runtimerobotics@gmail.com</a>
+      <a href="tel:+918907590702">+91 8907590702</a>
+      <span>Kochi, Kerala, India</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} Qbotics Labs Pvt Ltd.</span>
+    <span>Built as a static site for GitHub Pages.</span>
+  </div>
+</footer>

@@ -1,0 +1,188 @@
+# RUNTIME Robotics — Static Astro Migration Starter
+
+This repository is a static replacement starter for the WordPress site at `runtimerobotics.com`.
+It is designed for GitHub Pages and contains no server-side runtime.
+
+## What is included
+
+- Responsive one-page company site
+- Services, projects, clients, team, about and contact sections
+- Mobile navigation
+- Project-category filtering
+- Scroll reveal interactions
+- SEO meta tags and preserved blog URL structure
+- Static contact fallback using `mailto:`
+- Optional Formspree-compatible AJAX submission
+- WordPress REST API migration script for blog posts + post images
+- GitHub Pages deployment workflow
+
+## Local development
+
+Requirements: Node.js 24+.
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the URL Astro prints in the terminal.
+
+## Migrate WordPress posts
+
+The script reads public posts from the WordPress REST API, downloads images to `public/wp-media/`, converts post HTML to Markdown and writes pages using each WordPress slug.
+
+```bash
+npm run migrate:wp
+```
+
+To migrate from another source domain:
+
+```bash
+WP_ORIGIN=https://old.example.com npm run migrate:wp
+```
+
+If a temporary `.astro` page exists with the same slug as a migrated WordPress post, the migration script removes that placeholder automatically before writing the Markdown page. It also refreshes `public/sitemap.xml` with the migrated post URLs.
+
+## Contact form
+
+By default the form opens the visitor's email client and sends to `runtimerobotics@gmail.com`.
+
+For direct browser submission on GitHub Pages, create a Formspree form and set the endpoint in `src/pages/index.astro`:
+
+```html
+<form data-contact-form data-endpoint="https://formspree.io/f/YOUR_ID">
+```
+
+No API secret should be embedded in client-side JavaScript.
+
+## GitHub Pages deployment
+
+The included `.github/workflows/deploy.yml` builds and deploys on every push to `main`.
+
+For the final custom domain, keep this in `astro.config.mjs`:
+
+```js
+const site = process.env.SITE_URL || 'https://runtimerobotics.com';
+```
+
+In GitHub:
+
+1. Repository → Settings → Pages.
+2. Select **GitHub Actions** as the source.
+3. Configure `runtimerobotics.com` as the custom domain in Pages settings.
+4. Update DNS at the domain provider using GitHub's current Pages DNS instructions.
+5. Enable HTTPS after DNS resolves.
+
+For a temporary project URL such as `https://YOUR_USER.github.io/runtime-static/`, build with:
+
+```bash
+SITE_URL=https://YOUR_USER.github.io BASE_PATH=/runtime-static npm run build
+```
+
+## Recommended cut-over sequence
+
+1. Keep WordPress live while developing the static site.
+2. Migrate all posts and images.
+3. Compare old and new URLs; preserve important WordPress slugs.
+4. Test mobile layout, forms, links and images.
+5. Deploy to the GitHub Pages preview URL.
+6. Add the custom domain in GitHub Pages.
+7. Change DNS only when the preview is approved.
+8. Keep an export/back-up of WordPress before cancelling hosting.
+
+## Notes
+
+GitHub Pages serves static files only. WordPress-only features such as PHP forms, admin editing, search backed by MySQL, comments and plugins need static or external replacements.
+
+## Docker development and production preview
+
+You can work on the site without installing Node.js on the host. Docker provides two modes.
+
+### 1. Development server with hot reload
+
+```bash
+docker compose up --build dev
+```
+
+Open:
+
+```text
+http://localhost:4321
+```
+
+The repository is bind-mounted into the container, so changes to `src/`, `public/`, and the Astro configuration are reflected by the development server. Stop it with `Ctrl+C`, or run it in the background with:
+
+```bash
+docker compose up -d --build dev
+```
+
+View logs with:
+
+```bash
+docker compose logs -f dev
+```
+
+### 2. Production build + Nginx preview
+
+This mode performs `npm run build` inside Docker and copies the generated `dist/` directory into a small Nginx image:
+
+```bash
+docker compose up --build preview
+```
+
+Open:
+
+```text
+http://localhost:8080
+```
+
+This is the recommended mode for checking the final static output before pushing to GitHub Pages.
+
+To stop either mode:
+
+```bash
+docker compose down
+```
+
+### Rebuild after production changes
+
+The production image contains a snapshot of the site at build time, so rebuild it after editing files:
+
+```bash
+docker compose up --build preview
+```
+
+### Build for the final domain
+
+The preview service defaults `SITE_URL` to `http://localhost:8080`. To test a build that contains the production canonical URL:
+
+```bash
+SITE_URL=https://runtimerobotics.com docker compose build preview
+```
+
+For a GitHub project-pages path, you can also supply a base path:
+
+```bash
+SITE_URL=https://YOUR_USER.github.io \
+BASE_PATH=/runtime-static \
+docker compose build preview
+```
+
+### Build the production Docker image directly
+
+Docker Compose is optional. The equivalent direct Docker commands are:
+
+```bash
+docker build --target production -t runtime-robotics:preview .
+docker run --rm -p 8080:80 runtime-robotics:preview
+```
+
+For development:
+
+```bash
+docker build --target development -t runtime-robotics:dev .
+docker run --rm -it -p 4321:4321 \
+  -v "$PWD:/app" \
+  -v /app/node_modules \
+  runtime-robotics:dev
+```
