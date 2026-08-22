@@ -4,7 +4,9 @@ services:
       context: .
       target: development
     container_name: runtime-robotics-dev
-    command: npm run dev -- --host 0.0.0.0
+    # The source directory is bind-mounted. Ignore a host-side Astro lock file,
+    # which can otherwise reference a PID that Docker reuses after a restart.
+    command: npm run dev -- --host 0.0.0.0 --ignore-lock --verbose
     ports:
       - "4321:4321"
     volumes:
@@ -13,6 +15,8 @@ services:
     environment:
       # Polling makes file watching reliable on Docker Desktop/WSL/Linux bind mounts.
       CHOKIDAR_USEPOLLING: "true"
+      # Keep Astro in foreground mode so --ignore-lock works with the bind mount.
+      ASTRO_DEV_BACKGROUND: "0"
     restart: unless-stopped
 
   preview:

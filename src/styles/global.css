@@ -294,7 +294,7 @@ p { color: var(--muted); }
 @media (max-width: 680px) {
   :root { --container: min(100% - 26px, 560px); }
   .section { padding: 68px 0; }
-  .brand img { display: none; }
+  .brand img { display: block; width: 112px; }
   .hero { padding-top: 118px; }
   .hero h1 { font-size: clamp(2.8rem, 14vw, 4.4rem); }
   .hero-visual { min-height: 420px; }
