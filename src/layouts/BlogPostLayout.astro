@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 const { frontmatter } = Astro.props;
 const date = frontmatter.date ? new Date(frontmatter.date) : undefined;
 ---
-<BaseLayout title={`${frontmatter.title} | RUNTIME Robotics`} description={frontmatter.description}>
+<BaseLayout title={`${frontmatter.title} | RUNTIME Robotics`} description={frontmatter.description} image={frontmatter.image}>
   <Header />
   <main class="page-main">
     <article class="article container narrow">

@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 const {
   title = 'RUNTIME Robotics | ROS Robot Software Development',
   description = 'ROS and ROS 2 robot software development, simulation, navigation, manipulation, perception, driver development and industrial training.',
-  image = 'images/amr_robot.webp'
+  image = 'images/amr_robot.webp',
+  structuredData
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -37,6 +39,8 @@ const socialImage = Astro.site ? new URL(`${base}${image}`, Astro.site) : `${bas
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
 
     <title>{title}</title>
   </head>
