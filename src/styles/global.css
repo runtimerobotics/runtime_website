@@ -135,16 +135,16 @@ p { color: var(--muted); }
 .robot-card {
   position: relative;
   z-index: 2;
-  width: min(440px, 90%);
-  padding: 26px;
+  width: min(620px, 100%);
+  padding: 18px;
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 34px;
   background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.025));
   box-shadow: 0 40px 100px rgba(0,0,0,.45);
   backdrop-filter: blur(16px);
 }
-.robot-card img { width: 100%; aspect-ratio: 1/1; object-fit: contain; border-radius: 22px; background: rgba(255,255,255,.95); }
-.robot-status { position: absolute; left: 44px; right: 44px; bottom: 42px; display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-radius: 12px; color: #dfeaf2; background: rgba(4, 14, 24, .86); font-size: .8rem; font-weight: 700; }
+.robot-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; border-radius: 22px; background: rgba(255,255,255,.95); }
+.robot-status { position: absolute; left: 36px; right: 36px; bottom: 34px; display: flex; align-items: center; gap: 8px; padding: 11px 14px; border-radius: 12px; color: #dfeaf2; background: rgba(4, 14, 24, .86); font-size: .8rem; font-weight: 700; }
 .robot-status span { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 14px var(--lime); }
 .orb { position: absolute; border-radius: 50%; filter: blur(1px); }
 .orb-one { width: 340px; height: 340px; background: rgba(32,215,229,.16); top: 5%; right: 2%; }

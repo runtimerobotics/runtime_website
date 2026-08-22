@@ -7,76 +7,115 @@ const base = import.meta.env.BASE_URL;
 
 const services = [
   {
-    title: 'Robot Simulation',
-    image: 'revised/robot-simulation.webp',
-    text: 'Build and validate robot behavior in Gazebo, Webots, NVIDIA Isaac Sim and other simulators before deploying to hardware.'
-  },
-  {
-    title: 'ROS Navigation',
+    title: 'Autonomous Navigation Systems',
     image: 'revised/ros-navigation.webp',
-    text: 'Mapping, localization, planning and autonomous navigation solutions for mobile robots using ROS and ROS 2.'
+    text: 'ROS 2 navigation, mapping, localization, planning, controls and sensor integration for autonomous mobile robots.'
   },
   {
-    title: 'Robot Manipulation',
+    title: 'Robot Manipulation & Motion Planning',
     image: 'revised/robot-manipulation.webp',
-    text: 'Software for pick-and-place, inspection, bin-picking and motion-planning workflows for robotic arms.'
+    text: 'Pick-and-place, bin picking, grasping, motion planning and force-aware manipulation for industrial robot arms.'
   },
   {
-    title: 'ROS Perception',
+    title: 'Robot Perception & Edge AI',
     image: 'revised/ros-perception.webp',
-    text: '2D and 3D perception pipelines using OpenCV, point clouds and modern robot-vision tooling.'
+    text: '2D and 3D vision, LiDAR, depth cameras, detection, tracking and GPU-accelerated ROS 2 perception pipelines.'
   },
   {
-    title: 'ROS Driver Development',
+    title: 'Robot Simulation & Digital Twins',
+    image: 'revised/robot-simulation.webp',
+    text: 'OpenUSD digital twins, NVIDIA Omniverse, Isaac Sim, software-in-the-loop testing and synthetic data workflows.'
+  },
+  {
+    title: 'ROS 2 Hardware & Driver Development',
     image: 'revised/ros-driver-development.webp',
-    text: 'ROS interfaces and hardware drivers for cameras, LiDARs, embedded controllers and custom robot components.'
+    text: 'Custom interfaces and drivers for cameras, LiDARs, motor controllers, embedded systems and complete robot platforms.'
   },
   {
-    title: 'Industrial ROS Training',
-    image: 'revised/industrial-ros-training.webp',
-    text: 'Practical ROS 1 and ROS 2 training for engineering teams, universities and robotics organizations.'
-  },
-  {
-    title: 'NVIDIA Omniverse & Digital Twins',
-    image: 'services/nvidia-omniverse-digital-twin.png',
-    text: 'Build high-fidelity digital twins and simulation workflows with NVIDIA Omniverse, Isaac Sim and synthetic data.'
-  },
-  {
-    title: 'NVIDIA Robotics Stack',
-    image: 'services/nvidia-robotics-stack.png',
-    text: 'Integrate Isaac ROS, Isaac Lab, Jetson and GPU-accelerated perception, planning and learning into robot systems.'
-  },
-  {
-    title: 'Humanoid & Unitree Robotics',
+    title: 'Humanoid Application Development',
     image: 'services/humanoid-unitree-robotics.png',
-    text: 'Develop ROS 2 applications for humanoid and Unitree platforms, including perception, locomotion, manipulation and sim-to-real workflows.'
+    text: 'ROS 2 applications for humanoids: navigation, perception, manipulation, teleoperation and sim-to-real validation.'
+  },
+  {
+    title: 'Quadruped Robot Application Development',
+    image: 'revised/quadruped-robotics.webp',
+    text: 'Autonomous inspection, terrain-aware navigation, perception, payload integration and remote operator workflows.'
+  },
+  {
+    title: 'Robot Learning: RL, IL & Sim-to-Real',
+    image: 'services/nvidia-robotics-stack.png',
+    text: 'Reinforcement learning, imitation learning, demonstration data, policy evaluation and controlled deployment workflows.'
+  },
+  {
+    title: 'VLA, VLM & Multimodal Robot Applications',
+    image: 'revised/vla-vlm-robotics.webp',
+    text: 'Vision-language models and vision-language-action prototypes for scene understanding, task planning and robot interaction.'
+  },
+  {
+    title: 'Synthetic Data & Physical AI Pipelines',
+    image: 'services/nvidia-omniverse-digital-twin.png',
+    text: 'RTX sensor simulation, domain randomization, synthetic datasets, teleoperation data and Physical AI evaluation pipelines.'
+  },
+  {
+    title: 'Industrial ROS & ROS 2 Training',
+    image: 'revised/industrial-ros-training.webp',
+    text: 'Hands-on training in navigation, manipulation, perception, drivers, Docker, simulation and deployment.'
+  },
+  {
+    title: 'NVIDIA Omniverse & Isaac Training',
+    image: 'revised/nvidia-robotics-training.webp',
+    text: 'OpenUSD, Omniverse, Isaac Sim, Isaac ROS, Isaac Lab, digital twins, synthetic data and robot learning workshops.'
   }
 ];
 
 const projects = [
   {
-    title: 'Disinfection Robots',
-    category: 'navigation',
-    image: 'revised/disinfection-robot.webp',
-    text: 'Navigation and robot-software work for autonomous disinfection platforms, including integration with low-level controllers.'
+    title: 'Unitree G1 & R1 Humanoid Navigation',
+    category: 'humanoid',
+    image: 'services/humanoid-unitree-robotics.png',
+    text: 'Localization, navigation, obstacle awareness, safety boundaries and mission-level task control for humanoid platforms.'
   },
   {
-    title: 'Food Delivery Robots',
-    category: 'navigation',
-    image: 'revised/food-delivery-robot.webp',
-    text: 'Mapping, path planning, navigation and simulation workflows for indoor and outdoor delivery robots.'
+    title: 'Humanoid Perception & Manipulation',
+    category: 'humanoid',
+    image: 'services/nvidia-robotics-stack.png',
+    text: '3D scene understanding, grasp planning and task execution with humanoid arms and dexterous end effectors.'
   },
   {
-    title: 'Industrial Robot Arms',
+    title: 'RL Locomotion & Whole-Body Control',
+    category: 'learning-ai',
+    image: 'revised/rl-locomotion-whole-body-control.webp',
+    text: 'Simulation environments, reward design, policy training, evaluation and controlled sim-to-real transfer for humanoids.'
+  },
+  {
+    title: 'Imitation Learning & Teleoperation',
+    category: 'learning-ai',
+    image: 'revised/nvidia-robotics-training.webp',
+    text: 'Demonstration collection, dataset processing, policy training and deployment validation for embodied robot tasks.'
+  },
+  {
+    title: 'VLA/VLM Physical AI Task Execution',
+    category: 'learning-ai',
+    image: 'revised/vla-vlm-robotics.webp',
+    text: 'Natural-language task interfaces, visual grounding, semantic scene understanding and controlled action pipelines.'
+  },
+  {
+    title: 'Quadruped Autonomous Inspection',
+    category: 'navigation',
+    image: 'revised/quadruped-robotics.webp',
+    text: 'Perception-led patrols, mapping, waypoint navigation and remote operator workflows for quadruped robots.'
+  },
+  {
+    title: 'AMR Digital Twin & Fleet Validation',
+    category: 'simulation',
+    image: 'revised/robot-simulation.webp',
+    text: 'Warehouse simulation, sensor modelling, navigation stress testing and synthetic data generation for AMR systems.'
+  },
+  {
+    title: 'Industrial Manipulation Cell',
     category: 'manipulation',
     image: 'revised/industrial-robot-arm.webp',
-    text: 'ROS 2 driver integration, gripper control and pick-and-place applications with perception support.'
-  },
-  {
-    title: 'Autonomous Mobile Robots',
-    category: 'simulation',
-    image: 'revised/autonomous-mobile-robot.webp',
-    text: 'Navigation tuning, planners, control integration and realistic simulation for AMR products.'
+    text: 'Vision-guided pick-and-place, motion planning, gripper integration and workstation safety logic.'
   }
 ];
 
@@ -96,35 +135,32 @@ const clients = [
         <div class="hero-copy reveal">
           <div class="eyebrow"><span></span> Robot software engineering</div>
           <h1>Powering your robots using <em>ROS</em></h1>
-          <p>
-            Engineering support for ROS and ROS 2—from simulation and navigation to manipulation,
-            perception, hardware drivers and industrial training.
-          </p>
+          <p>Engineering support for ROS 2, Physical AI and autonomous robots—from digital twins and perception to humanoids, quadrupeds, AMRs and industrial training.</p>
           <div class="hero-actions">
             <a class="button" href="#services">Explore services</a>
             <a class="button button-ghost" href="#contact">Discuss a project</a>
           </div>
           <div class="hero-points" aria-label="Capabilities">
-            <span>ROS 1 & ROS 2</span>
-            <span>Remote development</span>
-            <span>Simulation to hardware</span>
+            <span>Humanoid · Quadruped · AMR</span>
+            <span>Physical AI</span>
+            <span>Simulation to deployment</span>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Autonomous mobile robot project">
+        <div class="hero-visual reveal" aria-label="Humanoid, quadruped and autonomous mobile robot warehouse application">
           <div class="orb orb-one"></div>
           <div class="orb orb-two"></div>
           <div class="robot-card">
-            <img src={`${base}images/revised/autonomous-mobile-robot.webp`} alt="Autonomous mobile robot in a warehouse" width="480" height="480" />
-            <div class="robot-status"><span></span> ROS system online</div>
+            <img src={`${base}images/revised/physical-ai-warehouse-hero.webp`} alt="Humanoid, quadruped and autonomous mobile robots working together in a warehouse" width="768" height="432" />
+            <div class="robot-status"><span></span> Physical AI systems online</div>
           </div>
           <div class="floating-card card-top">
-            <strong>Navigation</strong>
-            <span>Mapping · Planning · Control</span>
+            <strong>Embodied robotics</strong>
+            <span>Humanoid · Quadruped · AMR</span>
           </div>
           <div class="floating-card card-bottom">
-            <strong>Simulation</strong>
-            <span>Gazebo · Webots · Isaac Sim</span>
+            <strong>Learning + simulation</strong>
+            <span>Isaac Sim · RL · IL</span>
           </div>
         </div>
       </div>
@@ -134,7 +170,7 @@ const clients = [
       <div class="container">
         <div class="section-heading reveal">
           <div><span class="kicker">Capabilities</span><h2>Our services</h2></div>
-          <p>Focused engineering services for teams building real robots and robot products.</p>
+          <p>From ROS 2 engineering to Physical AI, we help teams build, train, validate and deploy modern robot systems.</p>
         </div>
         <div class="card-grid service-grid">
           {services.map((service, index) => (
@@ -154,12 +190,14 @@ const clients = [
     <section class="section section-dark" id="projects">
       <div class="container">
         <div class="section-heading reveal">
-          <div><span class="kicker">Selected work</span><h2>Robot projects</h2></div>
-          <p>Examples of projects covering navigation, manipulation, simulation and robot integration.</p>
+          <div><span class="kicker">Capabilities in action</span><h2>Featured solution tracks</h2></div>
+          <p>Solution areas spanning humanoids, robot learning, navigation, manipulation and simulation.</p>
         </div>
 
         <div class="filter-bar reveal" role="group" aria-label="Filter projects">
           <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="humanoid">Humanoid</button>
+          <button class="filter-button" data-filter="learning-ai">Learning + AI</button>
           <button class="filter-button" data-filter="navigation">Navigation</button>
           <button class="filter-button" data-filter="manipulation">Manipulation</button>
           <button class="filter-button" data-filter="simulation">Simulation</button>
