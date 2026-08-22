@@ -8,32 +8,32 @@ const base = import.meta.env.BASE_URL;
 const services = [
   {
     title: 'Robot Simulation',
-    image: 'sim_thumbnail.webp',
+    image: 'revised/robot-simulation.webp',
     text: 'Build and validate robot behavior in Gazebo, Webots, NVIDIA Isaac Sim and other simulators before deploying to hardware.'
   },
   {
     title: 'ROS Navigation',
-    image: 'navigation_thumbnail.webp',
+    image: 'revised/ros-navigation.webp',
     text: 'Mapping, localization, planning and autonomous navigation solutions for mobile robots using ROS and ROS 2.'
   },
   {
     title: 'Robot Manipulation',
-    image: 'manipulation_ros1.webp',
+    image: 'revised/robot-manipulation.webp',
     text: 'Software for pick-and-place, inspection, bin-picking and motion-planning workflows for robotic arms.'
   },
   {
     title: 'ROS Perception',
-    image: 'manipulation_ros2.webp',
+    image: 'revised/ros-perception.webp',
     text: '2D and 3D perception pipelines using OpenCV, point clouds and modern robot-vision tooling.'
   },
   {
     title: 'ROS Driver Development',
-    image: 'ros_driver2.webp',
+    image: 'revised/ros-driver-development.webp',
     text: 'ROS interfaces and hardware drivers for cameras, LiDARs, embedded controllers and custom robot components.'
   },
   {
     title: 'Industrial ROS Training',
-    image: 'training.webp',
+    image: 'revised/industrial-ros-training.webp',
     text: 'Practical ROS 1 and ROS 2 training for engineering teams, universities and robotics organizations.'
   },
   {
@@ -57,25 +57,25 @@ const projects = [
   {
     title: 'Disinfection Robots',
     category: 'navigation',
-    image: 'disinfection.webp',
+    image: 'revised/disinfection-robot.webp',
     text: 'Navigation and robot-software work for autonomous disinfection platforms, including integration with low-level controllers.'
   },
   {
     title: 'Food Delivery Robots',
     category: 'navigation',
-    image: 'food_delivery_robot.webp',
+    image: 'revised/food-delivery-robot.webp',
     text: 'Mapping, path planning, navigation and simulation workflows for indoor and outdoor delivery robots.'
   },
   {
     title: 'Industrial Robot Arms',
     category: 'manipulation',
-    image: 'pick_place.webp',
+    image: 'revised/industrial-robot-arm.webp',
     text: 'ROS 2 driver integration, gripper control and pick-and-place applications with perception support.'
   },
   {
     title: 'Autonomous Mobile Robots',
     category: 'simulation',
-    image: 'amr_robot.webp',
+    image: 'revised/autonomous-mobile-robot.webp',
     text: 'Navigation tuning, planners, control integration and realistic simulation for AMR products.'
   }
 ];
@@ -115,7 +115,7 @@ const clients = [
           <div class="orb orb-one"></div>
           <div class="orb orb-two"></div>
           <div class="robot-card">
-            <img src={`${base}images/amr_robot.webp`} alt="Autonomous mobile robot" width="480" height="480" />
+            <img src={`${base}images/revised/autonomous-mobile-robot.webp`} alt="Autonomous mobile robot in a warehouse" width="480" height="480" />
             <div class="robot-status"><span></span> ROS system online</div>
           </div>
           <div class="floating-card card-top">
@@ -139,7 +139,7 @@ const clients = [
         <div class="card-grid service-grid">
           {services.map((service, index) => (
             <article class="service-card reveal" style={`--delay:${index * 60}ms`}>
-              <div class="service-image"><img src={`${base}images/${service.image}`} alt="" loading="lazy" /></div>
+              <div class="service-image"><img src={`${base}images/${service.image}`} alt={service.title} loading="lazy" /></div>
               <div class="service-content">
                 <span class="service-index">0{index + 1}</span>
                 <h3>{service.title}</h3>
@@ -203,11 +203,21 @@ const clients = [
         <div class="team-grid">
           <article class="team-card reveal">
             <img src={`${base}images/lentin.webp`} alt="Lentin Joseph" loading="lazy" />
-            <div><span>Co-Founder</span><h3>Lentin Joseph</h3><p>ROS developer and educator, author of multiple books on ROS and robotics.</p></div>
+            <div>
+              <span>Co-Founder · ROS Developer & Educator</span>
+              <h3>Lentin Joseph</h3>
+              <p>ROS developer and educator since 2010, author of 10 books on ROS, and a hands-on engineering partner for simulation, navigation and robot-software projects.</p>
+              <a class="team-link" href="https://www.linkedin.com/in/lentinjoseph/" target="_blank" rel="noreferrer">View LinkedIn profile <span aria-hidden="true">↗</span></a>
+            </div>
           </article>
           <article class="team-card reveal">
             <img src={`${base}images/aleena.webp`} alt="Aleena Johny" loading="lazy" />
-            <div><span>Co-Founder</span><h3>Aleena Johny</h3><p>ROS software developer, educator and co-author working across robot-software projects and training.</p></div>
+            <div>
+              <span>Co-Founder · ROS Developer & Educator</span>
+              <h3>Aleena Johny</h3>
+              <p>ROS software developer, educator and co-author supporting practical robot-software delivery, training and modern ROS 2 development workflows.</p>
+              <a class="team-link" href="https://www.linkedin.com/in/aleena-johny-83a3161a5/" target="_blank" rel="noreferrer">View LinkedIn profile <span aria-hidden="true">↗</span></a>
+            </div>
           </article>
         </div>
       </div>
@@ -216,7 +226,7 @@ const clients = [
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-image reveal">
-          <img src={`${base}images/about_us.webp`} alt="Engineering team discussion" loading="lazy" />
+          <img src={`${base}images/revised/engineering-team.webp`} alt="Robotics engineers collaborating around an autonomous mobile robot" loading="lazy" />
           <div class="about-badge"><strong>ROS</strong><span>focused robotics engineering</span></div>
         </div>
         <div class="about-copy reveal">

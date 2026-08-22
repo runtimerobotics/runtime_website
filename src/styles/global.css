@@ -194,6 +194,8 @@ p { color: var(--muted); }
 .team-card span { color: var(--cyan-deep); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
 .team-card h3 { margin: 8px 0 12px; font-size: 1.7rem; }
 .team-card p { margin-bottom: 0; }
+.team-link { display: inline-flex; gap: 7px; margin-top: 22px; color: var(--cyan-deep); font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+.team-link:hover { color: var(--navy); }
 
 .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 72px; }
 .about-image { position: relative; }
