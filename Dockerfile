@@ -18,7 +18,7 @@ FROM dependencies AS build
 WORKDIR /app
 COPY . .
 
-ARG SITE_URL=https://runtimerobotics.com
+ARG SITE_URL=https://runtimerobotics.github.io
 ARG BASE_PATH=
 ENV SITE_URL=${SITE_URL}
 ENV BASE_PATH=${BASE_PATH}

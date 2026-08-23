@@ -6,7 +6,7 @@ import { servicePages } from '../data/servicePages';
 export function getStaticPaths() { return servicePages.map((page) => ({ params: { slug: page.slug }, props: { page } })); }
 const { page } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const structuredData = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.com/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics/runtime_website'] } };
+const structuredData = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.github.io/runtime_website/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics/runtime_website'] } };
 ---
 <BaseLayout title={`${page.title} | RUNTIME Robotics`} description={page.description} image={page.image} structuredData={structuredData}>
   <Header />

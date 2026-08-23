@@ -10,4 +10,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://runtimerobotics.com/sitemap.xml
+Sitemap: https://runtimerobotics.github.io/runtime_website/sitemap.xml
