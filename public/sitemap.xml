@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://runtimerobotics.github.io/runtime_website/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/blog/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/physical-ai-the-future-of-robotics-software/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/physical-ai-development/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/humanoid-robot-development/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/vla-vlm-robotics/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/nvidia-isaac-omniverse-development/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/ros2-robotics-consulting/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/unitree-g1-r1-development/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/robotics-training/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/robot-manipulation-motion-planning/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/robot-perception-edge-ai/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/quadruped-robot-development/</loc></url>
-  <url><loc>https://runtimerobotics.github.io/runtime_website/robot-learning-sim-to-real/</loc></url>
+  <url><loc>https://runtimerobotics.com/</loc></url>
+  <url><loc>https://runtimerobotics.com/blog/</loc></url>
+  <url><loc>https://runtimerobotics.com/physical-ai-the-future-of-robotics-software/</loc></url>
+  <url><loc>https://runtimerobotics.com/physical-ai-development/</loc></url>
+  <url><loc>https://runtimerobotics.com/humanoid-robot-development/</loc></url>
+  <url><loc>https://runtimerobotics.com/vla-vlm-robotics/</loc></url>
+  <url><loc>https://runtimerobotics.com/nvidia-isaac-omniverse-development/</loc></url>
+  <url><loc>https://runtimerobotics.com/ros2-robotics-consulting/</loc></url>
+  <url><loc>https://runtimerobotics.com/unitree-g1-r1-development/</loc></url>
+  <url><loc>https://runtimerobotics.com/robotics-training/</loc></url>
+  <url><loc>https://runtimerobotics.com/robot-manipulation-motion-planning/</loc></url>
+  <url><loc>https://runtimerobotics.com/robot-perception-edge-ai/</loc></url>
+  <url><loc>https://runtimerobotics.com/quadruped-robot-development/</loc></url>
+  <url><loc>https://runtimerobotics.com/robot-learning-sim-to-real/</loc></url>
 </urlset>
