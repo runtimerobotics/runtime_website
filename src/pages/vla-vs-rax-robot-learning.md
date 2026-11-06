@@ -2,11 +2,13 @@
 layout: ../layouts/BlogPostLayout.astro
 title: "VLA vs RAX: Are Robots Moving Beyond Imitation Learning?"
 description: "Two paths to robot learning: Vision-Language-Action models that learn from demonstrations, and RAX coding agents that explore and write their own reusable skills."
-image: "images/revised/vla-vs-rax-hero.webp"
+image: "images/revised/vla-vs-rax-hero.jpg"
 date: "2026-11-07"
 ---
 
 ![VLA vs RAX: two paths to robot learning](/images/revised/vla-vs-rax-hero.webp)
+
+*By Lentin Joseph, CEO, RUNTIME Robotics*
 
 Most Vision-Language-Action (VLA) models learn robot behaviors by imitating demonstrations, usually collected through hours of teleoperation. But what if a robot could explore, experiment, learn from its failures and write its own executable skills?
 
@@ -17,7 +19,7 @@ That is the idea behind **RAX (Robot Agent eXploration)**, a recent research pro
 Both approaches start from the same goal: turn observations into actions. They differ in *where the learned behavior lives*.
 
 - **VLA, a learned policy.** A neural network learns actions from robot experience. The behavior lives in the model's **weights**.
-- **RAX, a code agent.** A coding agent discovers skills through online trials. The behavior lives in **programs** you can read.
+- **RAX, a code agent.** An LLM discovers skills through online trials. The behavior lives in **programs** you can read.
 
 <figure class="diagram">
 <svg viewBox="0 0 640 470" role="img" aria-labelledby="vla-rax-title vla-rax-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
@@ -91,7 +93,7 @@ RAX isn't alone. Several other projects explore robots that improve through thei
 - **[ASPIRE](https://research.nvidia.com/labs/gear/aspire/)** (Agentic Skill Programming through Iterative Robot Exploration), from NVIDIA's GEAR lab: writes code-as-policy robot programs, diagnoses failures from execution feedback, repairs them and saves reusable skills.
 - **[SEAR](https://sear.bot/)** (Self-Evolving Agentic Robotics): language agents refine control code, carry skills and memories across tasks, and train action models on their own rollouts. It already mixes code and learned models.
 - **[RHO](https://rho-robotics.github.io/)** (Robotics Harness Optimization): a coding agent rewrites a robot's control code in simulation until it solves the task. It reports 99.0% on the Robosuite benchmark with zero demonstrations, and the code runs unchanged on real Franka and Kinova arms.
-- **[RoboClaw](https://roboclaw-agibot.github.io/)** (Agentic Robotics Framework): agentic orchestration of data collection, learned policies and long-horizon manipulation.
+- **[RoboClaw](https://roboclaw-agibot.github.io/)** (Agentic Robotics Framework): a single vision-language model runs data collection, policy training and task execution for long-horizon manipulation. Each action is paired with a recovery action, so the robot can reset itself and keep collecting data. It's another example of an agent working with learned VLA policies.
 
 Their learning mechanisms differ, but they all point toward robots that can grow their own capabilities from experience.
 
