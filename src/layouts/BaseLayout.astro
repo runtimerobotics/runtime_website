@@ -23,6 +23,8 @@ const socialImage = Astro.site ? new URL(`${base}${image}`, Astro.site) : `${bas
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Reveal animations hide content only when JS runs, so the page never stays blank. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
