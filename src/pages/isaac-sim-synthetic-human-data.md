@@ -2,11 +2,11 @@
 layout: ../layouts/BlogPostLayout.astro
 title: "Synthetic Human Data in NVIDIA Isaac Sim"
 description: "How we build diverse digital humans in Blender, convert them for Isaac Sim, animate them and generate validated pose datasets for robot perception."
-image: "images/revised/human-sdg-hero.jpg"
+image: "images/revised/human-sdg-cover.jpg"
 date: "2026-11-07"
 ---
 
-![Synthetic frames from Isaac Sim with ground-truth bounding boxes and body keypoints](/images/revised/human-sdg-hero.webp)
+![Synthetic Human Data with NVIDIA Isaac Sim: people in an office lobby annotated with IDs, actions, 3D boxes, keypoints and segmentation](/images/revised/human-sdg-cover.webp)
 
 *By Lentin Joseph, CEO, RUNTIME Robotics*
 
@@ -58,6 +58,8 @@ For the dataset, each person walks into a 4 × 4 m room through a door. They sta
 The camera is a simulated **Intel RealSense D455** using the real sensor's lens parameters and resolution, so the images match what a deployed robot would see.
 
 ![Scenario sequence in eight steps: entering, walking in, standing, steady standing, raising hands, hands on head, lowering hands, exiting](/images/revised/human-sdg-scenario.webp)
+
+![Real frames from our pipeline in Isaac Sim, with ground-truth bounding boxes and body keypoints](/images/revised/human-sdg-hero.webp)
 
 Each frame includes:
 
