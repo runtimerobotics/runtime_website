@@ -12,7 +12,7 @@ date: "2026-11-07"
 
 Robots that work around people need to see people: to detect them, estimate their pose and understand what they are doing. Training those perception models needs a lot of labelled human data. Real footage is slow to collect, expensive to label, raises privacy concerns and rarely covers enough body types, clothing and actions.
 
-**Synthetic data generation (SDG)** solves this. You build digital humans in simulation, animate them and let the simulator produce perfectly labelled images. We recently built a complete human SDG pipeline on **NVIDIA Isaac Sim 6.0.1**, and this post shows what it does.
+**Synthetic data generation (SDG)** helps solve this. You build digital humans in simulation, animate them and let the simulator produce perfectly labelled images. We recently built a complete human SDG pipeline on **NVIDIA Isaac Sim 6.0.1**, and this post shows what it does.
 
 ## The pipeline at a glance
 
