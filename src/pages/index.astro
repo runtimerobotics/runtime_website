@@ -165,7 +165,7 @@ const clients = [
     <section class="hero" id="home">
       <div class="hero-grid-bg" aria-hidden="true"></div>
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
+        <div class="hero-copy">
           <div class="eyebrow"><span></span> Robot software engineering</div>
           <h1>Powering Physical AI robots from <em>simulation to deployment</em></h1>
           <p>Engineering support for ROS 2, NVIDIA Omniverse and Physical AI—from digital twins, perception and robot learning to humanoids, quadrupeds, AMRs and industrial deployment.</p>
@@ -180,7 +180,7 @@ const clients = [
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Humanoid, quadruped and autonomous mobile robot warehouse application">
+        <div class="hero-visual" aria-label="Humanoid, quadruped and autonomous mobile robot warehouse application">
           <div class="orb orb-one"></div>
           <div class="orb orb-two"></div>
           <div class="robot-card">
@@ -238,8 +238,8 @@ const clients = [
         </div>
 
         <div class="project-grid">
-          {projects.map((project) => (
-            <article class="project-card reveal" data-project data-category={project.category}>
+          {projects.map((project, index) => (
+            <article class="project-card reveal" style={`--delay:${index * 60}ms`} data-project data-category={project.category}>
               <div class="project-image">
                 <img src={`${base}images/${project.image}`} alt={project.title} loading="lazy" />
               </div>
