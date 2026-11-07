@@ -85,7 +85,8 @@ const projects = [
     title: 'Unitree G1 & R1 Humanoid Navigation',
     category: 'humanoid',
     image: 'services/humanoid-unitree-robotics.webp',
-    text: 'Localization, navigation, obstacle awareness, safety boundaries and mission-level task control for humanoid platforms.'
+    text: 'Localization, navigation, obstacle awareness, safety boundaries and mission-level task control for humanoid platforms.',
+    href: 'unitree-g1-r1-development/'
   },
   {
     title: 'Humanoid Perception & Manipulation',
@@ -226,6 +227,7 @@ const clients = [
                 <span>{project.category}</span>
                 <h3>{project.title}</h3>
                 <p>{project.text}</p>
+                {project.href && <a class="service-link" href={`${base}${project.href}`}>Explore this service →</a>}
               </div>
             </article>
           ))}

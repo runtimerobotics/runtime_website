@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/BlogPostLayout.astro
-title: "Physical AI in Production: What's Shipping and How to Deploy It"
+title: "Physical AI in Production, Explained"
 description: "A 43-slide industry briefing on where robot foundation models are running today, where they're still in pilots, and an eight-stage playbook for taking one to production."
 image: "images/revised/physical-ai-in-production-cover.webp"
 date: "2026-10-27"

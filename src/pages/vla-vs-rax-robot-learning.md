@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/BlogPostLayout.astro
-title: "VLA vs RAX: Are Robots Moving Beyond Imitation Learning?"
+title: "VLA vs RAX: Beyond Imitation Learning?"
 description: "Two paths to robot learning: Vision-Language-Action models that learn from demonstrations, and RAX coding agents that explore and write their own reusable skills."
 image: "images/revised/vla-vs-rax-hero.jpg"
 date: "2026-11-07"
