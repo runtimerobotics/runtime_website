@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/BlogPostLayout.astro
-title: "Synthetic Human Data in NVIDIA Isaac Sim: From MakeHuman Characters to Validated Pose Datasets"
-description: "How RUNTIME Robotics builds diverse digital humans in Blender, converts them for Isaac Sim, animates them and generates labelled, validated pose datasets for robot perception."
+title: "Synthetic Human Data in NVIDIA Isaac Sim"
+description: "How we build diverse digital humans in Blender, convert them for Isaac Sim, animate them and generate validated pose datasets for robot perception."
 image: "images/revised/human-sdg-hero.jpg"
 date: "2026-11-07"
 ---
@@ -36,14 +36,14 @@ Getting a MakeHuman character to behave in Isaac Sim usually means a lot of manu
 
 - removes helper geometry and skin hidden under clothes
 - makes body-shape morphs permanent, so body, clothes, hair and skeleton line up
-- **moves the skeleton's root bone exactly to the origin.** Isaac Sim rejects skeletons whose root is more than 1 mm off, and MakeHuman leaves it a few millimetres away. It's a small detail that otherwise costs hours of debugging.
+- **moves the skeleton's root bone exactly to the origin.** Isaac Sim's character behavior setup rejects skeletons whose root is more than 1 mm off, and MakeHuman leaves it a few millimetres away. It's a small detail that otherwise costs hours of debugging.
 - uses a game-engine skeleton that NVIDIA's human motion library can drive directly
 - writes USD files in the folder layout Isaac Sim's people system expects, without stray lights or cameras
 - saves a metadata file with body measurements and surface landmarks for later ground truth
 
 The result: the same characters, walking and posing in Isaac Sim.
 
-![The same 14 body types rendered and animated in NVIDIA Isaac Sim](/images/revised/human-sdg-isaac-body-types.webp)
+![The same 14 body types rendered in NVIDIA Isaac Sim](/images/revised/human-sdg-isaac-body-types.webp)
 
 ## 3. Bringing them to life
 
@@ -57,7 +57,7 @@ For the dataset, each person walks into a 4 × 4 m room through a door. They sta
 
 The camera is a simulated **Intel RealSense D455** using the real sensor's lens parameters and resolution, so the images match what a deployed robot would see.
 
-![Scenario sequence: entering, walking, standing, steady standing, hands on head, exiting](/images/revised/human-sdg-scenario.webp)
+![Scenario sequence in eight steps: entering, walking in, standing, steady standing, raising hands, hands on head, lowering hands, exiting](/images/revised/human-sdg-scenario.webp)
 
 Each frame includes:
 
@@ -78,7 +78,7 @@ On a full run of 14 people and 140 frames:
 - **YOLO11-pose detected all 140 people**, with a mean keypoint similarity (OKS) of **0.945**
 - the full dataset took about **18 minutes on an RTX 4060 laptop**
 
-We also document what the data can't do yet: depth has no sensor noise, and the shoulder keypoints sit about 11 pixels from where YOLO places them, because the skeleton's shoulder joint is inside the body rather than on its surface.
+We also document what the data can't do yet: depth has no sensor noise, and in our tests the shoulder keypoints sat about 11 pixels from where YOLO places them, because the skeleton's shoulder joint is inside the body rather than on its surface.
 
 We built the pipeline with **Claude Code** as our AI coding partner, which let our engineers move quickly from idea to a tested, documented tool.
 
