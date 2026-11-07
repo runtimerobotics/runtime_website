@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import imageDimensions from './integrations/image-dimensions.mjs';
 
 // GitHub Pages supplies SITE_URL and BASE_PATH through configure-pages in CI.
 // The fallback matches the configured custom domain for local builds.
@@ -10,5 +11,6 @@ export default defineConfig({
   site,
   ...(base ? { base } : {}),
   output: 'static',
-  trailingSlash: 'always'
+  trailingSlash: 'always',
+  integrations: [imageDimensions()]
 });

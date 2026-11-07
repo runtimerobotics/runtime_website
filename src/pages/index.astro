@@ -4,6 +4,26 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL;
+const siteUrl = new URL(base, Astro.site).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
+      name: 'RUNTIME Robotics',
+      url: siteUrl,
+      logo: new URL(`${base}images/runtime_robotics_logo.webp`, Astro.site).href,
+      description: 'Robot software engineering for ROS 2 and Physical AI: digital twins, simulation, perception, robot learning, humanoids, quadrupeds, AMRs and robotics training.',
+      email: 'runtimerobotics@gmail.com',
+      telephone: '+918907590702',
+      address: { '@type': 'PostalAddress', addressLocality: 'Kochi', addressRegion: 'Kerala', addressCountry: 'IN' },
+      founder: { '@type': 'Person', name: 'Lentin Joseph', sameAs: 'https://www.linkedin.com/in/lentinjoseph/' },
+      sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics']
+    },
+    { '@type': 'WebSite', '@id': `${siteUrl}#website`, name: 'RUNTIME Robotics', url: siteUrl, publisher: { '@id': `${siteUrl}#organization` } }
+  ]
+};
 
 const services = [
   {
@@ -138,7 +158,7 @@ const clients = [
   'Spotless', 'IBM', 'GM', 'ArkRobot', 'Packt'
 ];
 ---
-<BaseLayout>
+<BaseLayout structuredData={structuredData}>
   <Header />
 
   <main>
@@ -164,7 +184,7 @@ const clients = [
           <div class="orb orb-one"></div>
           <div class="orb orb-two"></div>
           <div class="robot-card">
-            <img src={`${base}images/revised/physical-ai-warehouse-hero-v2.webp`} alt="Humanoid, quadruped and autonomous mobile robots working together in a warehouse" width="768" height="432" />
+            <img fetchpriority="high" src={`${base}images/revised/physical-ai-warehouse-hero-v2.webp`} alt="Humanoid, quadruped and autonomous mobile robots working together in a warehouse" width="768" height="432" />
             <div class="robot-status"><span></span> Physical AI systems online</div>
           </div>
           <div class="floating-card card-top">

@@ -4,6 +4,7 @@ title: "Synthetic Human Data in NVIDIA Isaac Sim"
 description: "How we build diverse digital humans in Blender, convert them for Isaac Sim, animate them and generate validated pose datasets for robot perception."
 image: "images/revised/human-sdg-cover.jpg"
 date: "2026-11-07"
+author: "Lentin Joseph"
 ---
 
 ![Synthetic Human Data with NVIDIA Isaac Sim: people in an office lobby annotated with IDs, actions, 3D boxes, keypoints and segmentation](/images/revised/human-sdg-cover.webp)

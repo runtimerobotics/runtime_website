@@ -5,15 +5,30 @@ import Footer from '../components/Footer.astro';
 
 const { frontmatter } = Astro.props;
 const date = frontmatter.date ? new Date(frontmatter.date) : undefined;
+const base = import.meta.env.BASE_URL;
+const siteUrl = new URL(base, Astro.site).href;
+const publisher = { '@type': 'Organization', name: 'RUNTIME Robotics', url: siteUrl, logo: { '@type': 'ImageObject', url: new URL(`${base}images/runtime_robotics_logo.webp`, Astro.site).href } };
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: frontmatter.title,
+  description: frontmatter.description,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  ...(frontmatter.image && { image: new URL(`${base}${frontmatter.image}`, Astro.site).href }),
+  ...(frontmatter.date && { datePublished: frontmatter.date }),
+  author: frontmatter.author ? { '@type': 'Person', name: frontmatter.author } : publisher,
+  publisher
+};
 ---
-<BaseLayout title={`${frontmatter.title} | RUNTIME Robotics`} description={frontmatter.description} image={frontmatter.image}>
+<BaseLayout title={`${frontmatter.title} | RUNTIME Robotics`} description={frontmatter.description} image={frontmatter.image} structuredData={structuredData}>
   <Header />
   <main class="page-main">
     <article class="article container narrow">
       <header class="article-header">
         <span class="kicker">RUNTIME Robotics Blog</span>
         <h1>{frontmatter.title}</h1>
-        {date && <p class="blog-date">{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</p>}
+        {date && <p class="blog-date"><time datetime={frontmatter.date}>{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>}
       </header>
       <div class="article-body prose">
         <slot />
