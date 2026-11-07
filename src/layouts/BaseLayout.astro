@@ -31,6 +31,7 @@ const socialImage = Astro.site ? new URL(`${base}${image}`, Astro.site) : `${bas
     <meta name="theme-color" content="#08111f" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={`${base}images/runtime_robotics_logo.webp`} />
+    <link rel="alternate" type="application/rss+xml" title="RUNTIME Robotics Blog" href={`${base}rss.xml`} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
