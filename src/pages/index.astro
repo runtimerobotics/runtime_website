@@ -173,8 +173,11 @@ const projects = [
   }
 ];
 
+// Monogram for the name tiles: first letters of the first two words.
+const initials = (name: string) => name.split(' ').slice(0, 2).map((w) => w[0]).join('');
+
 const clients = [
-  'Apress', 'Duplex', 'Bedestrian', 'Remy Robotics', 'Robomania', 'Swift',
+  'ISRO', 'Apress', 'Duplex', 'Bedestrian', 'Remy Robotics', 'Robomania', 'Swift',
   'CircleX', 'StreetDrone', 'Viscon', 'Wipro', 'Tata Motors', 'TCS',
   'Spotless', 'IBM', 'GM', 'ArkRobot', 'Packt'
 ];
@@ -235,8 +238,11 @@ const clients = [
           <div><span class="kicker">Experience</span><h2>Organizations we have worked with</h2></div>
           <p>Companies, research teams and publishers we have built robot software, training and books with.</p>
         </div>
-        <div class="client-cloud reveal">
-          {clients.map((client) => <span>{client}</span>)}
+        <div class="client-marquee reveal">
+          <div class="client-track">
+            <div class="client-cloud">{clients.map((client) => <span><b aria-hidden="true">{initials(client)}</b>{client}</span>)}</div>
+            <div class="client-cloud" aria-hidden="true">{clients.map((client) => <span><b aria-hidden="true">{initials(client)}</b>{client}</span>)}</div>
+          </div>
         </div>
       </div>
     </section>
