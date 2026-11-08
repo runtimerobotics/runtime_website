@@ -30,75 +30,89 @@ const structuredData = {
   ]
 };
 
+const serviceGroups = ['Robot engineering', 'Physical AI and simulation', 'Training'];
+
 const services = [
   {
     title: 'Autonomous Navigation Systems',
+    group: 'Robot engineering',
     image: 'revised/ros-navigation.webp',
     text: 'ROS 2 navigation, mapping, localization, planning, controls and sensor integration for autonomous mobile robots.',
     href: 'ros2-robotics-consulting/'
   },
   {
     title: 'Robot Manipulation & Motion Planning',
+    group: 'Robot engineering',
     image: 'revised/robot-manipulation.webp',
     text: 'Pick-and-place, bin picking, grasping, motion planning and force-aware manipulation for industrial robot arms.',
     href: 'robot-manipulation-motion-planning/'
   },
   {
     title: 'Robot Perception & Edge AI',
+    group: 'Robot engineering',
     image: 'revised/ros-perception.webp',
     text: '2D and 3D vision, LiDAR, depth cameras, detection, tracking and GPU-accelerated ROS 2 perception pipelines.',
     href: 'robot-perception-edge-ai/'
   },
   {
-    title: 'Robot Simulation & Digital Twins',
-    image: 'revised/robot-simulation.webp',
-    text: 'OpenUSD digital twins, NVIDIA Omniverse, Isaac Sim, software-in-the-loop testing and synthetic data workflows.',
-    href: 'nvidia-isaac-omniverse-development/'
-  },
-  {
     title: 'ROS 2 Hardware & Driver Development',
+    group: 'Robot engineering',
     image: 'revised/ros-driver-development.webp',
     text: 'Custom interfaces and drivers for cameras, LiDARs, motor controllers, embedded systems and complete robot platforms.',
     href: 'ros2-robotics-consulting/'
   },
   {
+    title: 'Robot Simulation & Digital Twins',
+    group: 'Physical AI and simulation',
+    image: 'revised/robot-simulation.webp',
+    text: 'OpenUSD digital twins, NVIDIA Omniverse, Isaac Sim, software-in-the-loop testing and synthetic data workflows.',
+    href: 'nvidia-isaac-omniverse-development/'
+  },
+  {
     title: 'Humanoid Application Development',
+    group: 'Physical AI and simulation',
     image: 'services/humanoid-unitree-robotics.webp',
     text: 'ROS 2 applications for humanoids: navigation, perception, manipulation, teleoperation and sim-to-real validation.',
     href: 'humanoid-robot-development/'
   },
   {
     title: 'Quadruped Robot Application Development',
+    group: 'Physical AI and simulation',
     image: 'revised/quadruped-robotics.webp',
     text: 'Autonomous inspection, terrain-aware navigation, perception, payload integration and remote operator workflows.',
     href: 'quadruped-robot-development/'
   },
   {
     title: 'Robot Learning: RL, IL & Sim-to-Real',
+    group: 'Physical AI and simulation',
     image: 'services/nvidia-robotics-stack.webp',
     text: 'Reinforcement learning, imitation learning, demonstration data, policy evaluation and controlled deployment workflows.',
     href: 'robot-learning-sim-to-real/'
   },
   {
     title: 'VLA, VLM & Multimodal Robot Applications',
+    group: 'Physical AI and simulation',
     image: 'revised/vla-vlm-robotics.webp',
     text: 'Vision-language models and vision-language-action prototypes for scene understanding, task planning and robot interaction.',
     href: 'vla-vlm-robotics/'
   },
   {
     title: 'Synthetic Data & Physical AI Pipelines',
+    group: 'Physical AI and simulation',
     image: 'services/nvidia-omniverse-digital-twin.webp',
     text: 'RTX sensor simulation, domain randomization, synthetic datasets, teleoperation data and Physical AI evaluation pipelines.',
     href: 'physical-ai-development/'
   },
   {
     title: 'Industrial ROS & ROS 2 Training',
+    group: 'Training',
     image: 'revised/industrial-ros-training.webp',
     text: 'Hands-on training in navigation, manipulation, perception, drivers, Docker, simulation and deployment.',
     href: 'robotics-training/'
   },
   {
     title: 'NVIDIA Omniverse & Isaac Training',
+    group: 'Training',
     image: 'revised/nvidia-robotics-training.webp',
     text: 'OpenUSD, Omniverse, Isaac Sim, Isaac ROS, Isaac Lab, digital twins, synthetic data and robot learning workshops.',
     href: 'robotics-training/'
@@ -206,25 +220,51 @@ const clients = [
       </div>
     </section>
 
+    <section class="stats-strip" aria-label="RUNTIME Robotics in numbers">
+      <div class="container stats-grid">
+        <div><strong>2010</strong><span>building and teaching ROS since</span></div>
+        <div><strong>11</strong><span>books on ROS and robotics</span></div>
+        <div><strong>{clients.length}+</strong><span>organizations worked with</span></div>
+        <div><strong>ROS 2 + Isaac</strong><span>from simulation to deployment</span></div>
+      </div>
+    </section>
+
+    <section class="section clients-section" id="clients">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Experience</span><h2>Organizations we have worked with</h2></div>
+          <p>Companies, research teams and publishers we have built robot software, training and books with.</p>
+        </div>
+        <div class="client-cloud reveal">
+          {clients.map((client) => <span>{client}</span>)}
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="services">
       <div class="container">
         <div class="section-heading reveal">
           <div><span class="kicker">Capabilities</span><h2>Our services</h2></div>
           <p>From ROS 2 engineering to Physical AI, we help teams build, train, validate and deploy modern robot systems.</p>
         </div>
-        <div class="card-grid service-grid">
-          {services.map((service, index) => (
-            <article class="service-card reveal" style={`--delay:${index * 60}ms`}>
+        {serviceGroups.map((group) => (
+          <>
+          <h3 class="service-group-title reveal">{group}</h3>
+          <div class="card-grid service-grid">
+          {services.filter((service) => service.group === group).map((service, i) => (
+            <article class="service-card reveal" style={`--delay:${i * 60}ms`}>
               <div class="service-image"><img src={`${base}images/${service.image}`} alt={service.title} loading="lazy" /></div>
               <div class="service-content">
-                <span class="service-index">{String(index + 1).padStart(2, '0')}</span>
+                <span class="service-index">{String(services.indexOf(service) + 1).padStart(2, '0')}</span>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
                 {service.href && <a class="service-link" href={`${base}${service.href}`}>Explore this service →</a>}
               </div>
             </article>
           ))}
-        </div>
+          </div>
+          </>
+        ))}
       </div>
     </section>
 
@@ -262,23 +302,12 @@ const clients = [
       </div>
     </section>
 
-    <section class="section clients-section" id="clients">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div><span class="kicker">Experience</span><h2>Organizations we have worked with</h2></div>
-          <p>Companies, research teams and publishers we have built robot software, training and books with.</p>
-        </div>
-        <div class="client-cloud reveal">
-          {clients.map((client) => <span>{client}</span>)}
-        </div>
-      </div>
-    </section>
 
-    <section class="section section-soft" id="team">
+    <section class="section section-soft" id="about">
       <div class="container">
         <div class="section-heading reveal">
-          <div><span class="kicker">People</span><h2>Our team</h2></div>
-          <p>ROS developers and educators focused on practical robot-software delivery.</p>
+          <div><span class="kicker">Who we are</span><h2>Engineering robots from software outward</h2></div>
+          <p>RUNTIME Robotics works with commercial and research teams on robot software, simulation, algorithms, perception and integration, helping turn robotics ideas into reliable systems while sharing practical knowledge through training.</p>
         </div>
         <div class="team-grid">
           <article class="team-card reveal">
@@ -300,31 +329,14 @@ const clients = [
             </div>
           </article>
         </div>
+        <div class="feature-list about-points reveal">
+          <div><strong>Research + commercial</strong><span>Support from prototypes through product integration.</span></div>
+          <div><strong>Remote friendly</strong><span>Development workflows designed for distributed robot teams.</span></div>
+          <div><strong>Education</strong><span>Hands-on ROS learning for engineers and students.</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-image reveal">
-          <img src={`${base}images/revised/engineering-team.webp`} alt="Robotics engineers collaborating around an autonomous mobile robot" loading="lazy" />
-          <div class="about-badge"><strong>ROS</strong><span>focused robotics engineering</span></div>
-        </div>
-        <div class="about-copy reveal">
-          <span class="kicker">Our story</span>
-          <h2>Engineering robots from software outward</h2>
-          <p>
-            RUNTIME Robotics works with commercial and research teams on robot software, simulation,
-            algorithms, perception and integration. The goal is to help teams turn robotics ideas into
-            reliable systems while sharing practical knowledge through training.
-          </p>
-          <div class="feature-list">
-            <div><strong>Research + commercial</strong><span>Support from prototypes through product integration.</span></div>
-            <div><strong>Remote friendly</strong><span>Development workflows designed for distributed robot teams.</span></div>
-            <div><strong>Education</strong><span>Hands-on ROS learning for engineers and students.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="section blog-preview section-soft" id="blog">
       <div class="container">
@@ -358,7 +370,7 @@ const clients = [
           <label>Email<input type="email" name="email" autocomplete="email" required /></label>
           <label>Message<textarea name="message" rows="6" required placeholder="Robot platform, ROS version, scope, timeline..."></textarea></label>
           <button class="button" type="submit">Send message</button>
-          <p class="form-note" data-form-status>Send us your project details and we’ll reply by email.</p>
+          <p class="form-note" data-form-status>Send us your project details. We usually reply within one working day.</p>
         </form>
       </div>
     </section>
