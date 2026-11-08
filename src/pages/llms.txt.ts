@@ -10,6 +10,7 @@ export function GET(context: APIContext) {
 > Robot software engineering company in Kochi, Kerala, India. RUNTIME Robotics builds ROS 2 and Physical AI systems, from digital twins, simulation, perception and robot learning to humanoids, quadrupeds, AMRs and industrial deployment, and runs hands-on robotics training.
 
 - Co-founders: Lentin Joseph (CEO), ROS developer and educator since 2010 and author of 11 books on ROS and robotics; and Aleena Johny, ROS software developer, educator and co-author.
+- Books: Lentin Joseph has written 11 books on ROS and robotics. Latest: Mastering ROS 2 for Robotics Programming, Fourth Edition (Packt), with Jonathan Cacace. All books: https://www.amazon.com/stores/author/B07JX5VX17/allbooks
 - Works with commercial and research teams, remote-friendly, from prototypes through product integration.
 - Core stack: ROS 2, Nav2, MoveIt, NVIDIA Isaac Sim, Isaac Lab, Isaac ROS, Omniverse, OpenUSD.
 - Contact: runtimerobotics@gmail.com, +91 89075 90702 (phone and WhatsApp: https://wa.me/918907590702), ${url('#contact')}
