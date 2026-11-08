@@ -28,6 +28,15 @@ const structuredData = {
       ],
       sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics']
     },
+    {
+      '@type': 'Book',
+      name: 'Mastering ROS 2 for Robotics Programming',
+      bookEdition: 'Fourth Edition',
+      author: [{ '@type': 'Person', name: 'Lentin Joseph' }, { '@type': 'Person', name: 'Jonathan Cacace' }],
+      publisher: { '@type': 'Organization', name: 'Packt' },
+      image: new URL(`${base}images/books/mastering-ros2-4th-edition.webp`, Astro.site).href,
+      sameAs: 'https://www.amazon.com/stores/author/B07JX5VX17/allbooks'
+    },
     { '@type': 'WebSite', '@id': `${siteUrl}#website`, name: 'RUNTIME Robotics', url: siteUrl, publisher: { '@id': `${siteUrl}#organization` } }
   ]
 };
@@ -228,7 +237,7 @@ const clients = [
     <section class="stats-strip" aria-label="RUNTIME Robotics in numbers">
       <div class="container stats-grid">
         <div><strong>2010</strong><span>building and teaching ROS since</span></div>
-        <div><strong>11</strong><span>books on ROS and robotics</span></div>
+        <a href="#books"><strong>11</strong><span>books on ROS and robotics</span></a>
         <div><strong>{clients.length}+</strong><span>organizations worked with</span></div>
         <div><strong>ROS 2 + Isaac</strong><span>from simulation to deployment</span></div>
       </div>
@@ -326,6 +335,24 @@ const clients = [
               <span class="oss-meta">{stars[item.repo] > 0 && <span>★ {stars[item.repo]}</span>} View on GitHub ↗</span>
             </a>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="books">
+      <div class="container book-feature">
+        <a class="book-cover reveal" href="https://www.amazon.com/stores/author/B07JX5VX17/allbooks" target="_blank" rel="noreferrer">
+          <img src={`${base}images/books/mastering-ros2-4th-edition.webp`} alt="Mastering ROS 2 for Robotics Programming, Fourth Edition, by Lentin Joseph and Jonathan Cacace (Packt)" loading="lazy" />
+        </a>
+        <div class="book-copy reveal">
+          <span class="kicker">Books by our team</span>
+          <h2>11 books on ROS and robotics, written by our co-founder</h2>
+          <span class="book-badge">Latest · Fourth Edition</span>
+          <h3>Mastering ROS 2 for Robotics Programming</h3>
+          <p>Design, build, simulate and prototype complex robots using the Robot Operating System 2.</p>
+          <p class="book-meta">By Lentin Joseph and Jonathan Cacace · Packt</p>
+          <p>The book features our open-source <a href="https://github.com/runtimerobotics/fusion360-urdf-ros2" target="_blank" rel="noreferrer">Fusion 360 → URDF exporter for ROS 2</a>.</p>
+          <a class="button" href="https://www.amazon.com/stores/author/B07JX5VX17/allbooks" target="_blank" rel="noreferrer">See all books on Amazon ↗</a>
         </div>
       </div>
     </section>

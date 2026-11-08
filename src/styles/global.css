@@ -111,6 +111,20 @@ p { color: var(--muted); }
 .topic-list a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: .88rem; font-weight: 700; }
 .topic-list a:hover { border-color: var(--cyan); }
 
+.stats-grid a { color: inherit; }
+.stats-grid a:hover span { color: var(--cyan); }
+.book-feature { display: grid; grid-template-columns: minmax(220px, 340px) 1fr; gap: 64px; align-items: center; }
+.book-cover img { width: 100%; border-radius: 10px; box-shadow: 0 30px 70px rgba(0, 0, 0, .45); transition: transform .3s ease; }
+.book-cover:hover img { transform: translateY(-6px) rotate(-1deg); }
+.book-copy h2 { margin: 10px 0 22px; }
+.book-badge { display: inline-block; padding: 5px 12px; border-radius: 999px; background: rgba(32, 215, 229, .14); color: var(--cyan); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+.book-copy h3 { margin: 12px 0 8px; font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.book-copy p { color: #aab7c7; }
+.book-copy p a { color: var(--cyan); }
+.book-copy .book-meta { color: #fff; font-weight: 700; }
+.book-copy .button { margin-top: 10px; }
+@media (max-width: 760px) { .book-feature { grid-template-columns: 1fr; gap: 32px; } .book-cover { max-width: 260px; } }
+
 .site-header {
   position: fixed;
   z-index: 50;
