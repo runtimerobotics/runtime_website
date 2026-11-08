@@ -200,6 +200,13 @@ p { color: var(--muted); }
 .project-content p { margin: 0; }
 
 .client-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+/* Two identical copies slide left by one copy's width, so the loop is seamless. */
+.client-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.client-track { display: flex; width: max-content; animation: marquee 45s linear infinite; }
+.client-marquee:hover .client-track { animation-play-state: paused; }
+.client-track .client-cloud { flex-wrap: nowrap; padding-right: 10px; }
+.client-cloud span { white-space: nowrap; }
+@keyframes marquee { to { translate: -50% 0; } }
 .client-cloud span { padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #445164; font-weight: 800; letter-spacing: -.01em; }
 
 .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -329,6 +336,10 @@ p { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .js .reveal { opacity: 1; transform: none; }
+  .client-marquee { -webkit-mask-image: none; mask-image: none; }
+  .client-track { width: auto; animation: none; }
+  .client-track .client-cloud { flex-wrap: wrap; padding-right: 0; }
+  .client-track .client-cloud[aria-hidden] { display: none; }
   .hero-copy > *, .hero-visual, .card-top, .card-bottom, .robot-status span, .orb-one { animation: none; }
 }
 
