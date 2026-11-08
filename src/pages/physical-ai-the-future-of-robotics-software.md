@@ -4,6 +4,8 @@ title: "Physical AI, NVIDIA and ROS: The Future of Robotics Software"
 description: "How ROS 2, NVIDIA Isaac, Omniverse simulation and robot learning are becoming one practical Physical AI workflow."
 image: "images/revised/physical-ai-future-hero.webp"
 date: "2026-08-22"
+service: "physical-ai-development"
+tags: ["Physical AI", "ROS 2", "Isaac Sim"]
 ---
 
 ![Humanoid, quadruped and autonomous mobile robots working together in a warehouse](/images/revised/physical-ai-future-hero.webp)

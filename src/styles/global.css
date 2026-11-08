@@ -219,6 +219,12 @@ p { color: var(--muted); }
 .blog-feature p { margin-bottom: 0; max-width: 760px; }
 .blog-date { color: var(--cyan-deep); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .blog-arrow { font-size: 2rem; color: var(--cyan-deep); }
+.blog-feature + .blog-feature { margin-top: 18px; }
+.blog-thumb { flex: 0 0 240px; align-self: center; aspect-ratio: 16 / 10; width: 240px; object-fit: cover; border-radius: 16px; }
+.blog-text { flex: 1; min-width: 0; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.tag-list li { padding: 4px 10px; border-radius: 999px; background: var(--surface-soft); color: var(--muted); font-size: .78rem; font-weight: 700; }
+@media (max-width: 760px) { .blog-feature { flex-direction: column; gap: 18px; } .blog-thumb { width: 100%; flex-basis: auto; } .blog-arrow { display: none; } }
 
 .contact-section { color: #fff; background: linear-gradient(135deg, #08111f, #0d1c31); }
 .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: start; }
@@ -272,6 +278,22 @@ p { color: var(--muted); }
 .article-header h1 { max-width: 900px; font-size: clamp(2.6rem, 5.4vw, 5rem); }
 .article-body { max-width: 760px; padding-top: 34px; font-size: 1.05rem; }
 .article-body p { color: #48566a; }
+.post-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; color: var(--muted); font-size: .92rem; }
+.post-meta span:first-child { color: var(--ink); font-weight: 700; }
+.author-box { display: flex; gap: 24px; align-items: flex-start; max-width: 760px; margin-top: 56px; padding: 26px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); }
+.author-box img { width: 96px; height: 96px; flex: none; border-radius: 50%; object-fit: cover; }
+.author-box h2 { margin: 6px 0 2px; font-size: 1.4rem; }
+.author-role { margin: 0 0 10px; color: var(--cyan-deep); font-weight: 700; font-size: .9rem; }
+.author-box p { color: var(--muted); }
+.author-box a { color: var(--cyan-deep); font-weight: 800; }
+.post-cta { max-width: 760px; margin-top: 28px; padding: 34px; border-radius: 22px; color: #fff; background: var(--dark); }
+.post-cta h2 { margin: 8px 0 10px; font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.post-cta p { color: #aab7c7; }
+.post-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.related-posts { max-width: 760px; margin-top: 56px; }
+.related-posts h2 { margin: 8px 0 22px; }
+.related-posts .blog-feature h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+@media (max-width: 600px) { .author-box { flex-direction: column; } }
 .article-body code { padding: 3px 6px; border-radius: 6px; background: #e8edf3; }
 
 /* Hero plays on page load (not on scroll), so the first screen never waits for a script. */

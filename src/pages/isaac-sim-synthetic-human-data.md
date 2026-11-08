@@ -5,11 +5,11 @@ description: "How we build diverse digital humans in Blender, convert them for I
 image: "images/revised/human-sdg-cover.jpg"
 date: "2026-11-07"
 author: "Lentin Joseph"
+service: "nvidia-isaac-omniverse-development"
+tags: ["Isaac Sim", "Synthetic data", "Perception"]
 ---
 
 ![Synthetic Human Data with NVIDIA Isaac Sim: people in an office lobby annotated with IDs, actions, 3D boxes, keypoints and segmentation](/images/revised/human-sdg-cover.webp)
-
-*By Lentin Joseph, CEO, RUNTIME Robotics*
 
 Robots that work around people need to see people: to detect them, estimate their pose and understand what they are doing. Training those perception models needs a lot of labelled human data. Real footage is slow to collect, expensive to label, raises privacy concerns and rarely covers enough body types, clothing and actions.
 
