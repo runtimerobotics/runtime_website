@@ -6,11 +6,11 @@ import { servicePages } from '../data/servicePages';
 export function getStaticPaths() { return servicePages.map((page) => ({ params: { slug: page.slug }, props: { page } })); }
 const { page } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const structuredData = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.com/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics/runtime_website'] } };
+const structuredData = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.com/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics'] } };
 ---
 <BaseLayout title={`${page.title} | RUNTIME Robotics`} description={page.description} image={`images/${page.image}`} structuredData={structuredData}>
   <Header />
-  <main class="page-main">
+  <main class="page-main" id="main">
     <section class="page-hero service-page-hero"><div class="container narrow"><span class="kicker">{page.eyebrow}</span><h1>{page.heading}</h1><p>{page.intro}</p><a class="button" href={`${base}#contact`}>Discuss your project</a></div></section>
     <section class="section"><div class="container service-page-grid"><img class="service-page-image" src={`${base}images/${page.image}`} alt={page.title} /><div><span class="kicker">What we deliver</span><h2>Engineering support tailored to your robot</h2><ul class="service-page-list">{page.outcomes.map((outcome) => <li>{outcome}</li>)}</ul></div></div></section>
     <section class="section section-soft"><div class="container narrow"><span class="kicker">Technology focus</span><h2>Built with an interoperable robotics stack</h2><div class="technology-tags">{page.technologies.map((technology) => <span>{technology}</span>)}</div></div></section>

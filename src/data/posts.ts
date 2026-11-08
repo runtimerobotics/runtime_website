@@ -1,4 +1,4 @@
-// Every blog post is a Markdown page using BlogPostLayout; RSS, sitemap and llms.txt read this list.
+// Every blog post is a Markdown page using BlogPostLayout; the blog lists, RSS, sitemap and llms.txt read this list.
 const files = import.meta.glob<{ frontmatter: Record<string, string> }>('../pages/*.md', { eager: true });
 
 export const posts = Object.entries(files)
@@ -8,6 +8,7 @@ export const posts = Object.entries(files)
     title: mod.frontmatter.title,
     description: mod.frontmatter.description,
     image: mod.frontmatter.image,
-    date: mod.frontmatter.date
+    date: mod.frontmatter.date,
+    displayDate: new Date(mod.frontmatter.date).toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })
   }))
   .sort((a, b) => b.date.localeCompare(a.date));
