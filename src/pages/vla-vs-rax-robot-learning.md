@@ -5,11 +5,11 @@ description: "Two paths to robot learning: Vision-Language-Action models that le
 image: "images/revised/vla-vs-rax-hero.jpg"
 date: "2026-11-07"
 author: "Lentin Joseph"
+service: "vla-vlm-robotics"
+tags: ["Robot learning", "VLA", "Physical AI"]
 ---
 
 ![VLA vs RAX: two paths to robot learning](/images/revised/vla-vs-rax-hero.webp)
-
-*By Lentin Joseph, CEO, RUNTIME Robotics*
 
 Most Vision-Language-Action (VLA) models learn robot behaviors by imitating demonstrations, usually collected through hours of teleoperation. But what if a robot could explore, experiment, learn from its failures and write its own executable skills?
 

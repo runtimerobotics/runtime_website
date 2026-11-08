@@ -4,6 +4,9 @@ title: "Physical AI in Production, Explained"
 description: "A 43-slide industry briefing on where robot foundation models are running today, where they're still in pilots, and an eight-stage playbook for taking one to production."
 image: "images/revised/physical-ai-in-production-cover.webp"
 date: "2026-10-27"
+service: "physical-ai-development"
+tags: ["Physical AI", "VLA", "Deployment"]
+author: "Lentin Joseph"
 ---
 
 ![Physical AI in Production: industry briefing cover slide](/images/revised/physical-ai-in-production-cover.webp)

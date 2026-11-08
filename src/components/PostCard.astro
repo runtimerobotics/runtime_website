@@ -1,0 +1,16 @@
+---
+import type { Post } from '../data/posts';
+interface Props { post: Post; heading?: 'h2' | 'h3'; reveal?: boolean }
+const { post, heading: Heading = 'h3', reveal = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<a class:list={['blog-feature', reveal ? 'reveal' : 'visible']} href={`${base}${post.slug}/`}>
+  <img class="blog-thumb" src={`${base}${post.thumbnail}`} alt="" loading="lazy" />
+  <div class="blog-text">
+    <span class="blog-date">{post.displayDate} · {post.readingMinutes} min read</span>
+    <Heading>{post.title}</Heading>
+    <p>{post.description}</p>
+    {post.tags.length > 0 && <ul class="tag-list">{post.tags.map((tag) => <li>{tag}</li>)}</ul>}
+  </div>
+  <span class="blog-arrow" aria-hidden="true">↗</span>
+</a>

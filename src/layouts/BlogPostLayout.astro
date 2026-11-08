@@ -2,10 +2,18 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import { posts, relatedPosts } from '../data/posts';
+import { authors } from '../data/authors';
+import { servicePages } from '../data/servicePages';
 
 const { frontmatter } = Astro.props;
 const date = frontmatter.date ? new Date(frontmatter.date) : undefined;
 const base = import.meta.env.BASE_URL;
+const post = posts.find((p) => Astro.url.pathname.endsWith(`/${p.slug}/`));
+const author = frontmatter.author ? authors[frontmatter.author] : undefined;
+const service = servicePages.find((s) => s.slug === frontmatter.service);
+const related = post ? relatedPosts(post) : [];
 const siteUrl = new URL(base, Astro.site).href;
 const publisher = { '@type': 'Organization', name: 'RUNTIME Robotics', url: siteUrl, logo: { '@type': 'ImageObject', url: new URL(`${base}images/runtime_robotics_logo.webp`, Astro.site).href } };
 const structuredData = {
@@ -28,11 +36,44 @@ const structuredData = {
       <header class="article-header">
         <span class="kicker">RUNTIME Robotics Blog</span>
         <h1>{frontmatter.title}</h1>
-        {date && <p class="blog-date"><time datetime={frontmatter.date}>{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>}
+        <p class="post-meta">
+          {frontmatter.author && <span>By {frontmatter.author}{author && `, ${author.role}`}</span>}
+          {date && <time datetime={frontmatter.date}>{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>}
+          {post && <span>{post.readingMinutes} min read</span>}
+        </p>
+        {post && post.tags.length > 0 && <ul class="tag-list">{post.tags.map((tag) => <li>{tag}</li>)}</ul>}
       </header>
       <div class="article-body prose">
         <slot />
       </div>
+      {author && (
+        <aside class="author-box" aria-label="About the author">
+          <img src={`${base}${author.photo}`} alt={frontmatter.author} loading="lazy" />
+          <div>
+            <span class="kicker">About the author</span>
+            <h2>{frontmatter.author}</h2>
+            <p class="author-role">{author.role}</p>
+            <p>{author.bio}</p>
+            <a href={author.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a>
+          </div>
+        </aside>
+      )}
+      <aside class="post-cta" aria-label="Work with RUNTIME Robotics">
+        <span class="kicker">Work with us</span>
+        <h2>{service ? service.heading : 'Need help with a robotics project?'}</h2>
+        <p>{service ? service.description : 'Tell us about your robot, software stack and timeline.'}</p>
+        <div class="post-cta-actions">
+          {service && <a class="button" href={`${base}${service.slug}/`}>Explore {service.title}</a>}
+          <a class:list={['button', service && 'button-ghost']} href={`${base}#contact`}>Discuss your project</a>
+        </div>
+      </aside>
+      {related.length > 0 && (
+        <section class="related-posts" aria-label="Related posts">
+          <span class="kicker">Keep reading</span>
+          <h2>You might also like</h2>
+          {related.map((p) => <PostCard post={p} />)}
+        </section>
+      )}
     </article>
   </main>
   <Footer />

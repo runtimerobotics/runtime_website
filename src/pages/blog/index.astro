@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { posts } from '../../data/posts';
+import PostCard from '../../components/PostCard.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Blog | RUNTIME Robotics" description="Articles about ROS, ROS 2, robot development, simulation and robotics engineering.">
@@ -17,16 +18,7 @@ const base = import.meta.env.BASE_URL;
     </section>
     <section class="section">
       <div class="container narrow">
-        {posts.map((post) => (
-          <a class="blog-feature visible" href={`${base}${post.slug}/`}>
-            <div>
-              <span class="blog-date">{post.displayDate}</span>
-              <h2>{post.title}</h2>
-              <p>{post.description}</p>
-            </div>
-            <span class="blog-arrow">↗</span>
-          </a>
-        ))}
+        {posts.map((post) => <PostCard post={post} heading="h2" />)}
       </div>
     </section>
   </main>
