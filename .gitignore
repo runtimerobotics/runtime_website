@@ -1,3 +1,9 @@
 node_modules
 dist
 .astro
+
+# Local Claude Code settings
+.claude/
+
+# graphify knowledge graph (rebuilt locally with `graphify update .`)
+graphify-out/
