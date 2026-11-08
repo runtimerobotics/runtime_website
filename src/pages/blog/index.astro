@@ -2,11 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { posts } from '../../data/posts';
 const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Blog | RUNTIME Robotics" description="Articles about ROS, ROS 2, robot development, simulation and robotics engineering.">
   <Header />
-  <main class="page-main">
+  <main class="page-main" id="main">
     <section class="page-hero">
       <div class="container narrow">
         <span class="kicker">RUNTIME Robotics</span>
@@ -16,38 +17,16 @@ const base = import.meta.env.BASE_URL;
     </section>
     <section class="section">
       <div class="container narrow">
-        <a class="blog-feature visible" href={`${base}isaac-sim-synthetic-human-data/`}>
-          <div>
-            <span class="blog-date">November 7, 2026</span>
-            <h2>Synthetic Human Data in NVIDIA Isaac Sim</h2>
-            <p>Diverse digital humans built in Blender, converted for Isaac Sim, animated and turned into labelled, validated pose datasets for robot perception.</p>
-          </div>
-          <span class="blog-arrow">↗</span>
-        </a>
-        <a class="blog-feature visible" href={`${base}vla-vs-rax-robot-learning/`}>
-          <div>
-            <span class="blog-date">November 7, 2026</span>
-            <h2>VLA vs RAX: Beyond Imitation Learning?</h2>
-            <p>Two paths to robot learning: models that learn from demonstrations, and coding agents that explore and write their own skills.</p>
-          </div>
-          <span class="blog-arrow">↗</span>
-        </a>
-        <a class="blog-feature visible" href={`${base}physical-ai-in-production/`}>
-          <div>
-            <span class="blog-date">October 27, 2026</span>
-            <h2>Physical AI in Production, Explained</h2>
-            <p>Where robot foundation models are running today, where they're still in pilots, and an eight-stage playbook for taking one to production.</p>
-          </div>
-          <span class="blog-arrow">↗</span>
-        </a>
-        <a class="blog-feature visible" href={`${base}physical-ai-the-future-of-robotics-software/`}>
-          <div>
-            <span class="blog-date">August 22, 2026</span>
-            <h2>Physical AI, NVIDIA and ROS: The Future of Robotics Software</h2>
-            <p>How ROS 2, NVIDIA Isaac, Omniverse simulation and robot learning are becoming one practical Physical AI workflow.</p>
-          </div>
-          <span class="blog-arrow">↗</span>
-        </a>
+        {posts.map((post) => (
+          <a class="blog-feature visible" href={`${base}${post.slug}/`}>
+            <div>
+              <span class="blog-date">{post.displayDate}</span>
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+            </div>
+            <span class="blog-arrow">↗</span>
+          </a>
+        ))}
       </div>
     </section>
   </main>

@@ -75,6 +75,9 @@ p { color: var(--muted); }
 .text-link { color: var(--cyan-deep); font-weight: 800; }
 .service-link { display: inline-block; margin-top: 4px; color: var(--cyan-deep); font-weight: 800; }
 
+.skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: 10px; background: var(--cyan); color: var(--dark); font-weight: 800; }
+.skip-link:focus { top: 12px; }
+
 .site-header {
   position: fixed;
   z-index: 50;
@@ -261,8 +264,6 @@ p { color: var(--muted); }
 .article-body { max-width: 760px; padding-top: 34px; font-size: 1.05rem; }
 .article-body p { color: #48566a; }
 .article-body code { padding: 3px 6px; border-radius: 6px; background: #e8edf3; }
-.migration-callout { margin-top: 34px; padding: 22px; border-left: 4px solid var(--cyan-deep); border-radius: 12px; background: #eef8fa; }
-.migration-callout p { margin: 7px 0 0; }
 
 /* Hero plays on page load (not on scroll), so the first screen never waits for a script. */
 @keyframes rise { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
