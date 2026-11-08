@@ -3,10 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { servicePages } from '../data/servicePages';
+import { posts } from '../data/posts';
 export function getStaticPaths() { return servicePages.map((page) => ({ params: { slug: page.slug }, props: { page } })); }
 const { page } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const structuredData = { '@context': 'https://schema.org', '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.com/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics'] } };
+const related = posts.filter((post) => page.related.includes(post.slug));
+const steps = [
+  ['Discovery and scoping', 'We agree on the robot, software stack, task and measurable success criteria.'],
+  ['Simulation-first prototype', 'We build and test in a digital twin, such as Isaac Sim or Gazebo, before touching hardware.'],
+  ['Integration on the robot', 'We bring it onto your hardware through clean ROS 2 interfaces, drivers and safety limits.'],
+  ['Validation and handover', 'We test against the agreed criteria and hand over code, documentation and team training.']
+];
+const service = { '@type': 'Service', name: page.title, description: page.description, url: Astro.url.href, areaServed: 'Worldwide', provider: { '@type': 'Organization', name: 'RUNTIME Robotics', url: 'https://runtimerobotics.com/', sameAs: ['https://www.linkedin.com/company/runtimerobotics/', 'https://github.com/runtimerobotics'] } };
+const faqPage = { '@type': 'FAQPage', mainEntity: page.faqs.map((faq) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) };
+const structuredData = { '@context': 'https://schema.org', '@graph': [service, faqPage] };
 ---
 <BaseLayout title={`${page.title} | RUNTIME Robotics`} description={page.description} image={`images/${page.image}`} structuredData={structuredData}>
   <Header />
@@ -14,7 +24,10 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'Service', n
     <section class="page-hero service-page-hero"><div class="container narrow"><span class="kicker">{page.eyebrow}</span><h1>{page.heading}</h1><p>{page.intro}</p><a class="button" href={`${base}#contact`}>Discuss your project</a></div></section>
     <section class="section"><div class="container service-page-grid"><img class="service-page-image" src={`${base}images/${page.image}`} alt={page.title} /><div><span class="kicker">What we deliver</span><h2>Engineering support tailored to your robot</h2><ul class="service-page-list">{page.outcomes.map((outcome) => <li>{outcome}</li>)}</ul></div></div></section>
     <section class="section section-soft"><div class="container narrow"><span class="kicker">Technology focus</span><h2>Built with an interoperable robotics stack</h2><div class="technology-tags">{page.technologies.map((technology) => <span>{technology}</span>)}</div></div></section>
-    <section class="section"><div class="container narrow service-page-cta"><span class="kicker">Start a conversation</span><h2>Tell us about your platform, technical goal and timeline.</h2><p>We can help define the engineering path from an initial prototype to a validated robot-software workflow.</p><a class="button" href={`${base}#contact`}>Contact RUNTIME Robotics</a></div></section>
+    <section class="section"><div class="container narrow"><span class="kicker">How we work</span><h2>From first conversation to a validated robot</h2><ol class="service-steps">{steps.map(([title, text]) => <li><strong>{title}</strong><span>{text}</span></li>)}</ol></div></section>
+    <section class="section section-soft"><div class="container narrow"><span class="kicker">FAQ</span><h2>Common questions</h2><div class="faq-list">{page.faqs.map((faq) => <details><summary>{faq.q}</summary><p>{faq.a}</p></details>)}</div></div></section>
+    {related.length > 0 && <section class="section"><div class="container narrow"><span class="kicker">Related reading</span><h2>From our blog</h2>{related.map((post) => <a class="blog-feature" href={`${base}${post.slug}/`}><div><span class="blog-date">{post.displayDate}</span><h3>{post.title}</h3><p>{post.description}</p></div><span class="blog-arrow">↗</span></a>)}</div></section>}
+    <section class="section section-soft"><div class="container narrow service-page-cta"><span class="kicker">Start a conversation</span><h2>Tell us about your platform, technical goal and timeline.</h2><p>We can help define the engineering path from an initial prototype to a validated robot-software workflow.</p><a class="button" href={`${base}#contact`}>Contact RUNTIME Robotics</a></div></section>
   </main>
   <Footer />
 </BaseLayout>
