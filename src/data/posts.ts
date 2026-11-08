@@ -36,3 +36,6 @@ export const relatedPosts = (post: Post, count = 2) =>
     .sort((a, b) => b.shared - a.shared || b.p.date.localeCompare(a.p.date))
     .slice(0, count)
     .map(({ p }) => p);
+
+export const tagSlug = (tag: string) => tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+export const allTags = [...new Set(posts.flatMap((p) => p.tags))].sort();

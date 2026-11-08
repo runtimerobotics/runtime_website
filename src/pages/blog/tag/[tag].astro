@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { posts, allTags, tagSlug } from '../../../data/posts';
+export function getStaticPaths() { return allTags.map((tag) => ({ params: { tag: tagSlug(tag) }, props: { tag } })); }
+const { tag } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const tagged = posts.filter((p) => p.tags.includes(tag));
+---
+<BaseLayout title={`${tag} articles | RUNTIME Robotics`} description={`RUNTIME Robotics articles about ${tag}.`}>
+  <Header />
+  <main class="page-main" id="main">
+    <section class="page-hero">
+      <div class="container narrow">
+        <span class="kicker"><a href={`${base}blog/`}>Blog</a> / Topic</span>
+        <h1>{tag}</h1>
+        <p>{tagged.length} {tagged.length === 1 ? 'article' : 'articles'} on {tag}.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container narrow">
+        {tagged.map((post) => <PostCard post={post} heading="h2" />)}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

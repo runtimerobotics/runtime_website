@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro';
-import { posts } from '../data/posts';
+import { posts, allTags, tagSlug } from '../data/posts';
 import { servicePages } from '../data/servicePages';
 
 // Generated so new posts and services are listed automatically; posts carry their publish date.
@@ -8,8 +8,10 @@ export function GET(context: APIContext) {
   const entries = [
     { loc: url('') },
     { loc: url('blog/'), lastmod: posts[0]?.date },
+    { loc: url('privacy/') },
     ...posts.map((post) => ({ loc: url(`${post.slug}/`), lastmod: post.date })),
-    ...servicePages.map((page) => ({ loc: url(`${page.slug}/`) }))
+    ...servicePages.map((page) => ({ loc: url(`${page.slug}/`) })),
+    ...allTags.map((tag) => ({ loc: url(`blog/tag/${tagSlug(tag)}/`) }))
   ];
   const body = entries
     .map((e) => `  <url><loc>${e.loc}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}</url>`)
