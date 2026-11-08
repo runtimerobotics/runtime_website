@@ -11,7 +11,8 @@ const { frontmatter } = Astro.props;
 const date = frontmatter.date ? new Date(frontmatter.date) : undefined;
 const base = import.meta.env.BASE_URL;
 const post = posts.find((p) => Astro.url.pathname.endsWith(`/${p.slug}/`));
-const author = frontmatter.author ? authors[frontmatter.author] : undefined;
+const authorName: string = frontmatter.author ?? 'Lentin Joseph'; // same default as src/data/posts.ts
+const author = authors[authorName];
 const service = servicePages.find((s) => s.slug === frontmatter.service);
 const related = post ? relatedPosts(post) : [];
 const siteUrl = new URL(base, Astro.site).href;
@@ -25,7 +26,7 @@ const structuredData = {
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
   ...(frontmatter.image && { image: new URL(`${base}${frontmatter.image}`, Astro.site).href }),
   ...(frontmatter.date && { datePublished: frontmatter.date }),
-  author: frontmatter.author ? { '@type': 'Person', name: frontmatter.author } : publisher,
+  author: { '@type': 'Person', name: authorName },
   publisher
 };
 ---
@@ -37,7 +38,7 @@ const structuredData = {
         <span class="kicker">RUNTIME Robotics Blog</span>
         <h1>{frontmatter.title}</h1>
         <p class="post-meta">
-          {frontmatter.author && <span>By {frontmatter.author}{author && `, ${author.role}`}</span>}
+          <span>By {authorName}{author && `, ${author.role}`}</span>
           {date && <time datetime={frontmatter.date}>{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>}
           {post && <span>{post.readingMinutes} min read</span>}
         </p>
@@ -48,10 +49,10 @@ const structuredData = {
       </div>
       {author && (
         <aside class="author-box" aria-label="About the author">
-          <img src={`${base}${author.photo}`} alt={frontmatter.author} loading="lazy" />
+          <img src={`${base}${author.photo}`} alt={authorName} loading="lazy" />
           <div>
             <span class="kicker">About the author</span>
-            <h2>{frontmatter.author}</h2>
+            <h2>{authorName}</h2>
             <p class="author-role">{author.role}</p>
             <p>{author.bio}</p>
             <a href={author.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn ↗</a>

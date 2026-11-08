@@ -18,7 +18,7 @@ export const posts = Object.entries(files)
       thumbnail: (webp && existsSync(`public/${webp}`) ? webp : fm.image) as string,
       date: fm.date as string,
       displayDate: new Date(fm.date).toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }),
-      author: fm.author as string | undefined,
+      author: (fm.author ?? 'Lentin Joseph') as string, // every post is Lentin's unless it names another author
       service: fm.service as string | undefined,
       tags: (fm.tags ?? []) as string[],
       readingMinutes: Math.max(1, Math.round(mod.rawContent().replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length / 220))
