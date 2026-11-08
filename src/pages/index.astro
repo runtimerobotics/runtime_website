@@ -173,6 +173,9 @@ const projects = [
   }
 ];
 
+// Monogram for the name tiles: first letters of the first two words.
+const initials = (name: string) => name.split(' ').slice(0, 2).map((w) => w[0]).join('');
+
 const clients = [
   'ISRO', 'Apress', 'Duplex', 'Bedestrian', 'Remy Robotics', 'Robomania', 'Swift',
   'CircleX', 'StreetDrone', 'Viscon', 'Wipro', 'Tata Motors', 'TCS',
@@ -237,8 +240,8 @@ const clients = [
         </div>
         <div class="client-marquee reveal">
           <div class="client-track">
-            <div class="client-cloud">{clients.map((client) => <span>{client}</span>)}</div>
-            <div class="client-cloud" aria-hidden="true">{clients.map((client) => <span>{client}</span>)}</div>
+            <div class="client-cloud">{clients.map((client) => <span><b aria-hidden="true">{initials(client)}</b>{client}</span>)}</div>
+            <div class="client-cloud" aria-hidden="true">{clients.map((client) => <span><b aria-hidden="true">{initials(client)}</b>{client}</span>)}</div>
           </div>
         </div>
       </div>
