@@ -52,6 +52,20 @@ const socialImage = Astro.site ? new URL(`${base}${image}`, Astro.site) : `${bas
       function gtag() { window.dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', 'G-X8ZMNHMG4H');
+      // Conversion events: which contact routes and calls to action people use.
+      document.addEventListener('click', (event) => {
+        const link = event.target instanceof Element && event.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        const name = href.includes('wa.me/') ? 'whatsapp_click'
+          : href.startsWith('tel:') ? 'phone_click'
+          : href.startsWith('mailto:') ? 'email_click'
+          : href.endsWith('#contact') ? 'contact_cta_click'
+          : link.matches('.service-link, .post-cta a') ? 'service_click'
+          : link.matches('.oss-card') ? 'open_source_click'
+          : null;
+        if (name) gtag('event', name, { link_url: link.href, link_text: link.textContent.trim().slice(0, 80) });
+      });
     </script>
 
     <title>{title}</title>

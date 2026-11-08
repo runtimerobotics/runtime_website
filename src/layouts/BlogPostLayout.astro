@@ -3,11 +3,12 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
-import { posts, relatedPosts } from '../data/posts';
+import { posts, relatedPosts, tagSlug } from '../data/posts';
 import { authors } from '../data/authors';
 import { servicePages } from '../data/servicePages';
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings = [] } = Astro.props;
+const sections = headings.filter((h: { depth: number }) => h.depth === 2);
 const date = frontmatter.date ? new Date(frontmatter.date) : undefined;
 const base = import.meta.env.BASE_URL;
 const post = posts.find((p) => Astro.url.pathname.endsWith(`/${p.slug}/`));
@@ -42,10 +43,21 @@ const structuredData = {
           {date && <time datetime={frontmatter.date}>{date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>}
           {post && <span>{post.readingMinutes} min read</span>}
         </p>
-        {post && post.tags.length > 0 && <ul class="tag-list">{post.tags.map((tag) => <li>{tag}</li>)}</ul>}
+        {post && post.tags.length > 0 && <ul class="tag-list">{post.tags.map((tag) => <li><a href={`${base}blog/tag/${tagSlug(tag)}/`}>{tag}</a></li>)}</ul>}
       </header>
+      {sections.length >= 3 && (
+        <nav class="toc" aria-label="In this article">
+          <span class="kicker">In this article</span>
+          <ol>{sections.map((h: { slug: string; text: string }) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      )}
       <div class="article-body prose">
         <slot />
+      </div>
+      <div class="share-row">
+        <span>Share this article</span>
+        <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(new URL(Astro.url.pathname, Astro.site).href)}`} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <button type="button" data-copy-link={new URL(Astro.url.pathname, Astro.site).href}>Copy link</button>
       </div>
       {author && (
         <aside class="author-box" aria-label="About the author">
@@ -77,5 +89,17 @@ const structuredData = {
       )}
     </article>
   </main>
+  <script>
+    document.querySelector('[data-copy-link]')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget as HTMLButtonElement;
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyLink!);
+        button.textContent = 'Link copied';
+      } catch {
+        button.textContent = 'Copy failed';
+      }
+      setTimeout(() => (button.textContent = 'Copy link'), 2000);
+    });
+  </script>
   <Footer />
 </BaseLayout>

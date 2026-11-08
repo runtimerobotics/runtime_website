@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const updated = '2026-11-08';
+---
+<BaseLayout title="Privacy Policy | RUNTIME Robotics" description="How RUNTIME Robotics collects, uses and protects personal data on runtimerobotics.com.">
+  <Header />
+  <main class="page-main" id="main">
+    <article class="article container narrow">
+      <header class="article-header">
+        <span class="kicker">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="post-meta"><span>Last updated</span><time datetime={updated}>November 8, 2026</time></p>
+      </header>
+      <div class="article-body prose">
+        <p>This policy explains what personal data runtimerobotics.com collects, why, and the choices you have. The site is operated by <strong>Qbotics Labs Pvt Ltd</strong> (trading as RUNTIME Robotics), Kochi, Kerala, India.</p>
+
+        <h2>What we collect</h2>
+        <ul>
+          <li><strong>Contact form:</strong> your first name, last name, email address and message, when you choose to send them.</li>
+          <li><strong>Direct contact:</strong> anything you send us by email, phone or WhatsApp.</li>
+          <li><strong>Usage data:</strong> Google Analytics records pages visited, approximate location, device and browser type, and which links or buttons are used (for example the contact form, WhatsApp or email links). It uses cookies to do this.</li>
+        </ul>
+        <p>We do not ask for payment details or sensitive personal data on this website.</p>
+
+        <h2>Why we use it</h2>
+        <ul>
+          <li>To reply to your enquiry and discuss a project or training.</li>
+          <li>To understand which pages and content are useful, and improve the website.</li>
+        </ul>
+        <p>We do not sell your personal data, and we do not use it for advertising.</p>
+
+        <h2>Services that process data for us</h2>
+        <ul>
+          <li><strong>Formspree</strong> receives contact-form submissions and forwards them to our email.</li>
+          <li><strong>Google Analytics</strong> (Google LLC) provides website statistics.</li>
+          <li><strong>GitHub Pages</strong> hosts the website and may log technical request data.</li>
+          <li>If you contact us on <strong>WhatsApp</strong>, Meta's WhatsApp terms apply to that conversation.</li>
+        </ul>
+        <p>These providers may process data outside India under their own privacy policies.</p>
+
+        <h2>How long we keep it</h2>
+        <p>We keep enquiries and related correspondence for as long as needed to respond and to maintain our business records, then delete them. Analytics data is kept according to our Google Analytics retention settings.</p>
+
+        <h2>Your choices and rights</h2>
+        <ul>
+          <li>You can ask to see, correct or delete the personal data we hold about you, or withdraw consent to further contact.</li>
+          <li>You can block or delete cookies in your browser, or use Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noreferrer">Analytics opt-out add-on</a>.</li>
+        </ul>
+        <p>These rights reflect India's Digital Personal Data Protection Act, 2023, and, for visitors in the European Union or United Kingdom, the GDPR.</p>
+
+        <h2>Contact</h2>
+        <p>For any privacy question or request, email <a href="mailto:runtimerobotics@gmail.com">runtimerobotics@gmail.com</a>. We will respond within a reasonable time.</p>
+
+        <h2>Changes</h2>
+        <p>We may update this policy as the website changes. The date at the top shows the latest version.</p>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

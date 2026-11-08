@@ -3,9 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { posts } from '../data/posts';
+import { openSource, starCounts } from '../data/openSource';
 import PostCard from '../components/PostCard.astro';
 
 const base = import.meta.env.BASE_URL;
+const stars = await starCounts();
 const siteUrl = new URL(base, Astro.site).href;
 const structuredData = {
   '@context': 'https://schema.org',
@@ -309,6 +311,25 @@ const clients = [
     </section>
 
 
+    <section class="section" id="open-source">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div><span class="kicker">Open source</span><h2>Tools and workshops we share</h2></div>
+          <p>Our public code: ROS 2 tooling used by the community, and the material behind our Physical AI workshops.</p>
+        </div>
+        <div class="oss-grid">
+          {openSource.map((item, i) => (
+            <a class="oss-card reveal" style={`--delay:${i * 50}ms`} href={`https://github.com/runtimerobotics/${item.repo}`} target="_blank" rel="noreferrer">
+              <span class="oss-kind">{item.kind}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <span class="oss-meta">{stars[item.repo] > 0 && <span>★ {stars[item.repo]}</span>} View on GitHub ↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="section section-soft" id="about">
       <div class="container">
         <div class="section-heading reveal">
@@ -435,6 +456,7 @@ const clients = [
         if (!response.ok) throw new Error('Request failed');
         form.reset();
         status.textContent = 'Thanks — your message was sent.';
+        window.gtag?.('event', 'generate_lead', { form: 'contact' });
       } catch {
         status.textContent = 'Could not send the form. Please email runtimerobotics@gmail.com.';
       }
