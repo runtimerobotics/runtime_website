@@ -256,6 +256,15 @@ p { color: var(--muted); }
 .service-page-list li { margin: 12px 0; padding-left: 6px; }
 .technology-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .technology-tags span { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: #334155; font-size: .9rem; font-weight: 700; }
+.service-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin: 28px 0 0; padding: 0; list-style: none; counter-reset: step; }
+.service-steps li { padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); counter-increment: step; }
+.service-steps li::before { content: "0" counter(step); display: block; margin-bottom: 10px; color: var(--cyan-deep); font-weight: 800; }
+.service-steps strong { display: block; margin-bottom: 6px; color: var(--ink); }
+.service-steps span { color: var(--muted); font-size: .95rem; }
+.faq-list { margin-top: 24px; }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { padding: 18px 0; color: var(--ink); font-weight: 700; cursor: pointer; }
+.faq-list details p { margin: 0 0 18px; color: var(--muted); }
 .service-page-cta { text-align: center; }
 .service-page-cta p { max-width: 640px; margin: 0 auto 24px; }
 .article { padding-top: 160px; padding-bottom: 100px; }
