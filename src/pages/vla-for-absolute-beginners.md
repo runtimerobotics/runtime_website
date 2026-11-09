@@ -13,7 +13,7 @@ tags: ["VLA", "Robot learning", "Physical AI"]
 
 Imagine walking into a kitchen and saying to a robot: **"Pick up the red cup and put it in the sink."** No programming, no coordinates, no special app. The robot looks around, finds the cup and does it.
 
-For decades this was science fiction. Every robot movement had to be planned and coded by an engineer. A new object, a new kitchen or a new task meant writing new code. **Vision-Language-Action models**, or **VLAs**, are changing that. They are a big part of why you now see videos of robots folding laundry, clearing tables and packing groceries from simple spoken instructions.
+For decades this was science fiction. Almost every robot movement had to be planned and coded by an engineer. A new object, a new kitchen or a new task meant writing new code. **Vision-Language-Action models**, or **VLAs**, are changing that. They are a big part of why you now see videos of robots folding laundry, clearing tables and packing groceries from simple spoken instructions.
 
 This guide explains VLAs from scratch. You don't need any background in AI or robotics. We'll use the red-cup example all the way through.
 
@@ -81,7 +81,7 @@ A VLA is one model, but it helps to think of it as a short pipeline. Every fract
 3. **Think.** A *language model*, the same kind of "brain" inside a chatbot, takes both sets of tokens together. Because it was trained on huge amounts of internet text and images, it already knows what a cup is, what "red" means and what a sink looks like.
 4. **Act.** Instead of writing a sentence, the model produces **action tokens**. An *action decoder* turns those into real movements: move the hand a little forward, rotate the wrist, close the gripper.
 
-Then the robot takes a new photo and the loop runs again. The robot never plans the whole task in one go. It keeps looking and adjusting, much as you do when you reach for something.
+Then the robot takes a new photo and the loop runs again. A basic VLA doesn't plan the whole task in one go. It keeps looking and adjusting, much as you do when you reach for something.
 
 ## How can words become movements?
 
@@ -155,7 +155,7 @@ Nobody writes a VLA's skills by hand. It learns them, in two stages.
 
 **Stage 2: learn to act.** The model is then trained on **robot demonstrations**: recordings of a robot doing tasks, usually guided by a person with a controller or a matching arm. This is called **teleoperation**. Each recording pairs what the camera saw and what the instruction was with the movements that followed. After seeing thousands of these, the model learns to produce the right movements itself.
 
-Robot demonstrations are the expensive part. Internet text is plentiful, but every robot demonstration needs real hardware, a real scene and a person's time. That is why research groups share demonstration datasets, and why simulation and synthetic data are becoming so important. Our post on [synthetic human data in NVIDIA Isaac Sim](/isaac-sim-synthetic-human-data/) shows what that looks like in practice.
+Robot demonstrations are the expensive part. Internet text is plentiful, but most robot demonstrations need real hardware, a real scene and a person's time. That is why research groups share demonstration datasets, and why simulation and synthetic data are becoming so important. Our post on [synthetic human data in NVIDIA Isaac Sim](/isaac-sim-synthetic-human-data/) shows what that looks like in practice.
 
 ## VLAs you'll hear about
 
@@ -202,7 +202,7 @@ Here NVIDIA introduces GR00T N1, an open foundation model for humanoid robots. W
 - **Data.** Good robot demonstrations are slow and costly to collect.
 - **Safety.** A model that guesses is not the same as a system you can certify around people.
 
-That last point matters most. In real deployments, a VLA is never the only thing in charge.
+That last point matters most. In real deployments, a VLA should never be the only thing in charge.
 
 <figure class="diagram">
 <svg viewBox="0 0 640 330" role="img" aria-labelledby="d5-title d5-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
