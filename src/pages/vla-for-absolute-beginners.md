@@ -9,7 +9,7 @@ service: "vla-vlm-robotics"
 tags: ["VLA", "Robot learning", "Physical AI"]
 ---
 
-![A humanoid robot picking a target object from a table, with the overhead cameras, robot hand, objects and storage bin labelled](/images/revised/vla-beginners-cover-labelled.webp)
+![VLA for Absolute Beginners: a humanoid robot picking a target object from a table, with the overhead cameras, robot hand, objects and storage bin labelled](/images/revised/vla-beginners-cover-labelled.webp)
 
 *What a robot needs to recognise before it can act: each object labelled, the way a robot vision system sees the scene.*
 
