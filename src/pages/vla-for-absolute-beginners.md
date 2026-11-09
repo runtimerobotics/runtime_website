@@ -163,7 +163,7 @@ A few names come up again and again. You don't need to remember them, but they s
 
 - **[RT-2](https://deepmind.google/discover/blog/rt-2-new-model-translates-vision-and-language-into-action/)** (Google DeepMind, 2023) popularised the term *vision-language-action model*. It was built on Google's vision-language models and wrote actions as text-like tokens.
 - **[OpenVLA](https://openvla.github.io/)** (2024) is an open-source, 7-billion-parameter VLA anyone can download. It was trained on about 970,000 robot demonstrations from the shared *Open X-Embodiment* dataset.
-- **[π0 (pi-zero)](https://www.pi.website/blog/pi0)** (Physical Intelligence, 2024) produces smooth, continuous motor commands up to 50 times per second. Its demos include folding laundry, bussing tables and assembling boxes.
+- **[π0, or pi-zero](https://www.pi.website/blog/pi0)** (Physical Intelligence, 2024) produces smooth, continuous motor commands up to 50 times per second. Its demos include folding laundry, bussing tables and assembling boxes.
 - **[NVIDIA Isaac GR00T](https://www.nvidia.com/en-us/industries/robotics/isaac-groot/)** (2025 onward) is NVIDIA's family of open models for humanoid robots. They take camera views, an instruction and the robot's current state, and predict the next chunk of movements.
 - **[SmolVLA](https://huggingface.co/blog/smolvla)** (Hugging Face, 2025) is a small, open VLA of about 450 million parameters. It is light enough to run on a laptop and was trained on datasets shared by the open-source community, many recorded on low-cost SO-100 robot arms.
 
@@ -224,7 +224,7 @@ The VLA **proposes** a movement. Safety layers and controllers that engineers ca
 
 ## Where does ROS 2 fit?
 
-A VLA is a "brain", but a real robot needs much more than a brain: camera drivers, motor controllers, safety limits, maps and navigation. In most robots today, these pieces are connected with **ROS 2**, the Robot Operating System.
+A VLA is a "brain", but a real robot needs much more than a brain: camera drivers, motor controllers, safety limits, maps and navigation. In many robots, especially in research and newer robot products, these pieces are connected with **ROS 2**, the Robot Operating System.
 
 <figure class="diagram">
 <svg viewBox="0 0 680 270" role="img" aria-labelledby="d6-title d6-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
