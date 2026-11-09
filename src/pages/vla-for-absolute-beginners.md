@@ -2,14 +2,16 @@
 layout: ../layouts/BlogPostLayout.astro
 title: "VLA Models for Absolute Beginners"
 description: "A plain-language guide to Vision-Language-Action models: what they are, how they turn words and images into robot movements, and how to try one yourself."
-image: "images/revised/vla-vlm-robotics.jpg"
+image: "images/revised/vla-beginners-cover-labelled.jpg"
 date: "2026-11-09"
 author: "Lentin Joseph"
 service: "vla-vlm-robotics"
 tags: ["VLA", "Robot learning", "Physical AI"]
 ---
 
-![A humanoid robot picking objects from a table, guided by overhead cameras](/images/revised/vla-vlm-robotics.webp)
+![A humanoid robot picking a target object from a table, with the overhead cameras, robot hand, objects and storage bin labelled](/images/revised/vla-beginners-cover-labelled.webp)
+
+*What a robot needs to recognise before it can act: each object labelled, the way a robot vision system sees the scene.*
 
 Imagine walking into a kitchen and saying to a robot: **"Pick up the red cup and put it in the sink."** No programming, no coordinates, no special app. The robot looks around, finds the cup and does it.
 
