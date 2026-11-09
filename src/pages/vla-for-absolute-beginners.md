@@ -9,11 +9,11 @@ service: "vla-vlm-robotics"
 tags: ["VLA", "Robot learning", "Physical AI"]
 ---
 
-![A robot arm guided by vision and language](/images/revised/vla-vlm-robotics.webp)
+![A humanoid robot picking objects from a table, guided by overhead cameras](/images/revised/vla-vlm-robotics.webp)
 
 Imagine walking into a kitchen and saying to a robot: **"Pick up the red cup and put it in the sink."** No programming, no coordinates, no special app. The robot looks around, finds the cup and does it.
 
-For decades this was science fiction. Every robot movement had to be planned and coded by an engineer. A new object, a new kitchen or a new task meant writing new code. **Vision-Language-Action models**, or **VLAs**, are changing that. They are the reason you now see videos of robots folding laundry, clearing tables and packing groceries from simple spoken instructions.
+For decades this was science fiction. Every robot movement had to be planned and coded by an engineer. A new object, a new kitchen or a new task meant writing new code. **Vision-Language-Action models**, or **VLAs**, are changing that. They are a big part of why you now see videos of robots folding laundry, clearing tables and packing groceries from simple spoken instructions.
 
 This guide explains VLAs from scratch. You don't need any background in AI or robotics. We'll use the red-cup example all the way through.
 
@@ -155,7 +155,7 @@ Nobody writes a VLA's skills by hand. It learns them, in two stages.
 
 **Stage 2: learn to act.** The model is then trained on **robot demonstrations**: recordings of a robot doing tasks, usually guided by a person with a controller or a matching arm. This is called **teleoperation**. Each recording pairs what the camera saw and what the instruction was with the movements that followed. After seeing thousands of these, the model learns to produce the right movements itself.
 
-Robot demonstrations are the expensive part. Internet text is plentiful, but every robot demonstration needs real hardware, a real scene and a person's time. That is why research groups share demonstration datasets, and why simulation and synthetic data are becoming so important.
+Robot demonstrations are the expensive part. Internet text is plentiful, but every robot demonstration needs real hardware, a real scene and a person's time. That is why research groups share demonstration datasets, and why simulation and synthetic data are becoming so important. Our post on [synthetic human data in NVIDIA Isaac Sim](/isaac-sim-synthetic-human-data/) shows what that looks like in practice.
 
 ## VLAs you'll hear about
 
@@ -166,6 +166,18 @@ A few names come up again and again. You don't need to remember them, but they s
 - **[π0 (pi-zero)](https://www.pi.website/blog/pi0)** (Physical Intelligence, 2024) produces smooth, continuous motor commands up to 50 times per second. Its demos include folding laundry, bussing tables and assembling boxes.
 - **[NVIDIA Isaac GR00T](https://www.nvidia.com/en-us/industries/robotics/isaac-groot/)** (2025 onward) is NVIDIA's family of open models for humanoid robots. They take camera views, an instruction and the robot's current state, and predict the next chunk of movements.
 - **[SmolVLA](https://huggingface.co/blog/smolvla)** (Hugging Face, 2025) is a small, open VLA of about 450 million parameters. It is light enough to run on a laptop and was trained on datasets shared by the open-source community, many recorded on low-cost SO-100 robot arms.
+
+### Which ones can you try?
+
+| Model | Made by | Size | Can you download it? |
+|---|---|---|---|
+| RT-2 | Google DeepMind | Built on large Google models | Research model (paper and demos) |
+| OpenVLA | Open-source research team | 7 billion parameters | Yes, open checkpoints |
+| π0 | Physical Intelligence | Built on a 3-billion-parameter VLM | Yes, via [openpi](https://github.com/Physical-Intelligence/openpi) (Apache-2.0) |
+| Isaac GR00T | NVIDIA | Latest version: 3 billion parameters | Yes, open models |
+| SmolVLA | Hugging Face | About 450 million parameters | Yes, and it runs on a laptop |
+
+"Parameters" are the numbers a model learns during training. More parameters usually means a more capable model, but also one that needs a more powerful computer.
 
 ## See it in action
 
@@ -210,6 +222,40 @@ That last point matters most. In real deployments, a VLA is never the only thing
 
 The VLA **proposes** a movement. Safety layers and controllers that engineers can test and certify **decide** what actually reaches the motors. We cover this in more depth in [Physical AI in Production, Explained](/physical-ai-in-production/). For a look at a different way robots can learn, by exploring and writing their own code, see [VLA vs RAX](/vla-vs-rax-robot-learning/).
 
+## Where does ROS 2 fit?
+
+A VLA is a "brain", but a real robot needs much more than a brain: camera drivers, motor controllers, safety limits, maps and navigation. In most robots today, these pieces are connected with **ROS 2**, the Robot Operating System.
+
+<figure class="diagram">
+<svg viewBox="0 0 680 270" role="img" aria-labelledby="d6-title d6-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
+<title id="d6-title">A VLA inside a ROS 2 robot</title>
+<desc id="d6-desc">A camera driver node publishes images on a ROS 2 topic. A VLA policy node reads the images and the instruction and publishes movement targets. ros2_control controllers, behind safety limits, move the robot's motors.</desc>
+<defs><marker id="d6-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4c9bff"/></marker></defs>
+<rect x="8" y="8" width="664" height="200" rx="16" fill="none" stroke="#4d6380" stroke-dasharray="6 6"/>
+<text x="24" y="34" font-size="14" fill="#9fb0c6">ROS 2</text>
+<g font-size="15" fill="#ffffff" text-anchor="middle">
+<rect x="28" y="60" width="140" height="80" rx="12" fill="#0e1a2c" stroke="#4d6380"/><text x="98" y="94">Camera driver</text><text x="98" y="116" font-size="13" fill="#9fb0c6">node</text>
+<rect x="246" y="60" width="160" height="80" rx="12" fill="#4a2a10" stroke="#f2994a"/><text x="326" y="94" fill="#f2994a" font-weight="700">VLA policy</text><text x="326" y="116" font-size="13" fill="#9fb0c6">node</text>
+<rect x="484" y="60" width="168" height="80" rx="12" fill="#13305a" stroke="#4c9bff"/><text x="568" y="94">ros2_control</text><text x="568" y="116" font-size="13" fill="#9fb0c6">controllers + safety limits</text>
+<rect x="246" y="160" width="160" height="38" rx="10" fill="#0e1a2c" stroke="#4d6380"/><text x="326" y="184" font-size="14">"pick up the red cup"</text>
+<rect x="484" y="226" width="168" height="38" rx="10" fill="#0e1a2c" stroke="#a7ee43"/><text x="568" y="250" font-size="14" fill="#a7ee43">Robot motors</text>
+</g>
+<g stroke="#4c9bff" stroke-width="2" fill="none" marker-end="url(#d6-arrow)">
+<path d="M170 100H242"/><path d="M408 100H480"/><path d="M326 158V144"/><path d="M568 142V222"/>
+</g>
+<g font-size="13" fill="#9fb0c6" text-anchor="middle"><text x="206" y="90">images</text><text x="444" y="90">targets</text></g>
+</svg>
+<figcaption>The VLA is one ROS 2 node among many. ROS 2 connects it to the cameras, controllers and safety system.</figcaption>
+</figure>
+
+In a typical setup:
+
+- A **camera driver** node publishes images on a ROS 2 *topic*, a named channel other programs can listen to.
+- The **VLA policy** runs as its own node. It listens to the camera topic and the instruction, and publishes the next movement targets.
+- **ros2_control** controllers turn those targets into motor commands, inside the speed, force and workspace limits engineers have set.
+
+This keeps the VLA swappable. You can try a new model without rewriting the drivers, controllers or safety system. It is also how we build VLA applications at RUNTIME Robotics: the AI suggests, and a well-tested ROS 2 stack does the rest.
+
 ## How to try a VLA yourself
 
 You don't need a lab to get started. Here is a path from zero to running your own model:
@@ -222,6 +268,24 @@ You don't need a lab to get started. Here is a path from zero to running your ow
    - [Sim-to-Real with SO-101](https://github.com/runtimerobotics/Sim-to-Real-SO-101-Workshop): an end-to-end workflow with the SO-101 arm, Isaac Lab and Isaac GR00T
    - [Physical AI with ROS 2](https://github.com/runtimerobotics/packt_physical_ai_workshop): perception, planning and control for intelligent robots
 
+## Beginner questions
+
+### Is ChatGPT a VLA?
+
+No. ChatGPT is a chatbot built on language and vision-language models. It can describe how to pick up a cup, but it can't control a robot. Many VLAs are, however, built on the same kind of model, then trained further on robot data.
+
+### Do I need a robot to start?
+
+No. You can learn the ideas, run robot simulators such as NVIDIA Isaac Sim or Gazebo, and explore robot datasets that people share on Hugging Face, all on a computer. A low-cost arm is a good next step once you want to see a model move something real.
+
+### What computer do I need?
+
+It depends on the model. Small models such as SmolVLA are designed to run on a laptop and train on a single consumer graphics card. Larger ones, such as the 7-billion-parameter OpenVLA, need a powerful GPU to run quickly enough to control a robot.
+
+### Will VLAs replace traditional robot programming?
+
+Not soon. VLAs add a flexible "brain" for understanding scenes and instructions, but real robots still need carefully engineered drivers, controllers, safety systems and integration, usually built with ROS 2. The two work together.
+
 ## Glossary
 
 - **Token:** a small piece of information a model works with, such as part of a word, a patch of an image or one robot movement.
@@ -229,6 +293,8 @@ You don't need a lab to get started. Here is a path from zero to running your ow
 - **VLM (vision-language model):** an AI model that understands images and text together.
 - **VLA (vision-language-action model):** a VLM that also outputs robot actions.
 - **Vision encoder:** the part of the model that turns an image into tokens.
+- **Action chunk:** several future movements predicted at once, so the robot moves smoothly instead of stopping after every step.
+- **Embodiment:** a robot's body type, such as an arm, a humanoid or a wheeled robot. Datasets like Open X-Embodiment mix many embodiments so one model can learn from all of them.
 - **Policy:** in robotics, the "decision maker" that chooses the next action from what the robot sees.
 - **Gripper:** the robot's "hand", usually two fingers that open and close.
 - **Teleoperation:** a person controlling a robot remotely, often to record demonstrations.
