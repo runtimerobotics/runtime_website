@@ -17,7 +17,7 @@ Before you pour a glass of water, you already "see" it in your head: the jug til
 
 This guide explains GR00T 2 from scratch. You don't need any AI or robotics background. If you'd like a warm-up first, read our [VLA Models for Absolute Beginners](/vla-for-absolute-beginners/) guide; GR00T 2 builds on the same ideas.
 
-> **Where the numbers come from:** all figures in this post come from NVIDIA's [GR00T 2 project page](https://research.nvidia.com/labs/gear/gr00t-2/) and [whitepaper](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf). They are NVIDIA's own lab results, usually measured over 20 trials per task.
+> **Where the numbers come from:** all figures in this post come from NVIDIA's [GR00T 2 project page](https://research.nvidia.com/labs/gear/gr00t-2/) and [whitepaper](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf). They are NVIDIA's own lab results, with trial counts ranging from 20 to 100 per task.
 
 ## From GR00T to GR00T 2: what changed?
 
@@ -213,7 +213,7 @@ A humanoid has to run its brain **on board**, on a much smaller computer than a 
 </g>
 <g stroke="#9fb0c6" stroke-width="2" fill="none" marker-end="url(#g6-arrow)"><path d="M152 105H176"/><path d="M332 105H356"/><path d="M512 105H536"/></g>
 </svg>
-<figcaption>Each layer runs faster than the one above it: plan slowly, balance and move quickly.</figcaption>
+<figcaption>Each step to the right runs faster: plan slowly, balance and move quickly.</figcaption>
 </figure>
 
 On the Unitree G1 humanoid, Turbo runs on the robot's own **Jetson Thor** computer and makes each prediction in **124 milliseconds**. It doesn't drive the motors directly. It sends a plan to **SONIC**, a whole-body controller that keeps the robot balanced while it walks, bends and reaches. Together they scooped and served popcorn in **all 48 trials** and cleared a table of mixed objects in **93%** of trials.
@@ -222,7 +222,7 @@ Turbo is not free speed. It trails full GR00T 2 on delicate five-finger tasks, r
 
 ## How does it compare?
 
-NVIDIA tested GR00T 2 against other leading robot models on long, multi-step tasks, after training all of them on the same task demonstrations:
+NVIDIA tested GR00T 2 against other leading robot models on long, multi-step tasks, after fine-tuning each model on the same long tasks:
 
 | Benchmark | GR00T 2 | GR00T 2 Turbo | Best other model tested |
 |---|---|---|---|

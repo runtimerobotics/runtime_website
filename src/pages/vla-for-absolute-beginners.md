@@ -164,7 +164,7 @@ A few names come up again and again. You don't need to remember them, but they s
 - **[RT-2](https://deepmind.google/discover/blog/rt-2-new-model-translates-vision-and-language-into-action/)** (Google DeepMind, 2023) popularised the term *vision-language-action model*. It was built on Google's vision-language models and wrote actions as text-like tokens.
 - **[OpenVLA](https://openvla.github.io/)** (2024) is an open-source, 7-billion-parameter VLA anyone can download. It was trained on about 970,000 robot demonstrations from the shared *Open X-Embodiment* dataset.
 - **[π0, or pi-zero](https://www.pi.website/blog/pi0)** (Physical Intelligence, 2024) produces smooth, continuous motor commands up to 50 times per second. Its demos include folding laundry, bussing tables and assembling boxes.
-- **[NVIDIA Isaac GR00T](https://www.nvidia.com/en-us/industries/robotics/isaac-groot/)** (2025 onward) is NVIDIA's family of open models for humanoid robots. They take camera views, an instruction and the robot's current state, and predict the next chunk of movements.
+- **[NVIDIA Isaac GR00T](https://www.nvidia.com/en-us/industries/robotics/isaac-groot/)** (2025 onward) is NVIDIA's family of open models for humanoid robots. They take camera views, an instruction and the robot's current state, and predict the next chunk of movements. The newest, GR00T 2, also imagines a short video of what will happen; see our [GR00T 2 for Absolute Beginners](/gr00t-2-for-absolute-beginners/) guide.
 - **[SmolVLA](https://huggingface.co/blog/smolvla)** (Hugging Face, 2025) is a small, open VLA of about 450 million parameters. It is light enough to run on a laptop and was trained on datasets shared by the open-source community, many recorded on low-cost SO-100 robot arms.
 
 ### Which ones can you try?
@@ -174,7 +174,7 @@ A few names come up again and again. You don't need to remember them, but they s
 | RT-2 | Google DeepMind | Built on large Google models | Research model (paper and demos) |
 | OpenVLA | Open-source research team | 7 billion parameters | Yes, open checkpoints |
 | π0 | Physical Intelligence | Built on a 3-billion-parameter VLM | Yes, via [openpi](https://github.com/Physical-Intelligence/openpi) (Apache-2.0) |
-| Isaac GR00T | NVIDIA | Latest version: 3 billion parameters | Yes, open models |
+| Isaac GR00T | NVIDIA | GR00T 2: about 2 billion parameters | Earlier versions are open; GR00T 2 code is listed for December 2026 |
 | SmolVLA | Hugging Face | About 450 million parameters | Yes, and it runs on a laptop |
 
 "Parameters" are the numbers a model learns during training. More parameters usually means a more capable model, but also one that needs a more powerful computer.
