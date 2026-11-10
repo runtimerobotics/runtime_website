@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/BlogPostLayout.astro
 title: "GR00T 2 for Absolute Beginners"
-description: "A plain-language guide to NVIDIA GR00T 2, the robot foundation model that imagines the future before it moves: what a world-action model is, how it learns from human video, and what it can do."
+description: "A plain-language guide to NVIDIA GR00T 2, the robot model that imagines the future before it moves: what a world-action model is, how it learns and what it can do."
 image: "images/revised/gr00t-2-beginners-cover.jpg"
 date: "2026-11-11"
 author: "Lentin Joseph"
@@ -13,11 +13,11 @@ tags: ["VLA", "Robot learning", "Physical AI"]
 
 Before you pour a glass of water, you already "see" it in your head: the jug tilts, the water flows, the glass fills up. You picture what will happen, then your hands follow that picture.
 
-**GR00T 2**, the new robot foundation model from NVIDIA's GEAR research lab, released in November 2026, works the same way. Before it moves, it **imagines a short video of what is about to happen**, then produces the movements that make that future come true. NVIDIA calls this kind of model a **world-action model**, or **WAM**.
+**GR00T 2**, the new robot foundation model from NVIDIA's GEAR research lab, announced in November 2026, works the same way. Before it moves, it **imagines a short video of what is about to happen**, then produces the movements that make that future come true. NVIDIA calls this kind of model a **world-action model**, or **WAM**.
 
 This guide explains GR00T 2 from scratch. You don't need any AI or robotics background. If you'd like a warm-up first, read our [VLA Models for Absolute Beginners](/vla-for-absolute-beginners/) guide; GR00T 2 builds on the same ideas.
 
-> **Where the numbers come from:** everything in this post is taken from NVIDIA's [GR00T 2 project page](https://research.nvidia.com/labs/gear/gr00t-2/) and [whitepaper](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf). They are NVIDIA's own lab results, usually measured over 20 trials per task.
+> **Where the numbers come from:** all figures in this post come from NVIDIA's [GR00T 2 project page](https://research.nvidia.com/labs/gear/gr00t-2/) and [whitepaper](https://research.nvidia.com/labs/gear/gr00t-2/assets/gr00t2_whitepaper.pdf). They are NVIDIA's own lab results, usually measured over 20 trials per task.
 
 ## From GR00T to GR00T 2: what changed?
 
@@ -56,7 +56,7 @@ Why bother imagining a video? Three reasons, which the rest of this guide unpack
 
 ## How GR00T 2 works, step by step
 
-GR00T 2 runs in a loop. Several times a second it repeats the same four steps:
+GR00T 2 runs in a loop, repeating the same four steps until the task is done:
 
 <figure class="diagram">
 <svg viewBox="0 0 680 300" role="img" aria-labelledby="g2-title g2-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
@@ -82,7 +82,7 @@ In a little more detail:
 
 - **What goes in:** about 0.8 seconds of recent video from up to four cameras (usually one on the robot's head and one on each wrist), the robot's current joint positions, and a plain-language instruction.
 - **What comes out:** a short **action chunk** (the next stretch of movements) plus the **predicted future frames for every camera**.
-- **Speed:** on a single GeForce RTX 5090 graphics card, GR00T 2 predicts each action chunk in about 153 milliseconds. The robot executes one chunk while the next is being computed, so motion stays smooth.
+- **Speed:** on a single GeForce RTX 5090 graphics card, GR00T 2 predicts each action chunk for a three-camera robot in about 153 milliseconds. The robot executes one chunk while the next is being computed, so motion stays smooth.
 
 ### What's inside the model
 
@@ -152,13 +152,13 @@ Training happens in three stages: first the model learns to predict video of han
 
 ### 1. Learning from people, not robots ("X-Adapt")
 
-This is the headline result. GR00T 2 can do a task on a robot that **never practised it**, after only seeing it done by:
+This is the headline result, which NVIDIA calls cross-adaptation, or **X-Adapt**. GR00T 2 can do a task on a robot that **never practised it**, after only seeing it done by:
 
 - **People with cameras on their head and wrists.** A robot with two five-fingered hands lined a lab funnel with filter paper and wet it with a wash bottle in **65%** of trials. Nobody ever remote-controlled the robot through that task.
 - **A handheld gripper.** Shown only UMI gripper demonstrations, a YAM robot arm assembled a toy dump truck end to end in **60%** of trials, a task that can take up to four minutes.
 - **A wearable robot hand.** Using DexUMI, a glove-like exoskeleton that copies a robot hand's joints, people demonstrated breakfast tasks and even striking a match to light a lamp. The robot learned these from the wearable demonstrations alone.
 
-The trick is that the robot still needs some general "play" data, recorded without any particular task, so the model learns how *its own body* looks and moves. The human or gripper demonstrations then teach the *task*. NVIDIA calls this cross-adaptation, or **X-Adapt**.
+There is one trick. When the demonstrator's body differs from the robot's, as with human hands or the handheld gripper, the robot still needs some general "play" data, recorded without any particular task, so the model learns how *its own body* looks and moves. The demonstrations then teach the *task*. The DexUMI exoskeleton copies the robot hand it was built for, so on that hand no play data is needed.
 
 ### 2. New tasks from a handful of demos
 
@@ -186,14 +186,18 @@ One fair caveat from the paper itself: these 50 tasks were chosen among those th
 
 GR00T 2 is good at the *how*: the fiddly hand movements that are hard to program. Large reasoning models (the AI behind advanced chatbots) are good at the *what*: breaking a long job into steps and checking progress. NVIDIA connects the two through a **WAM API**, so the reasoning model can call GR00T 2 like a tool.
 
-- **Agentic control.** The reasoning model watches GR00T 2 work, and when a part drops or progress stalls, it fixes the scene and hands control back. Together they assembled three different toys in **292 of 300** attempts, starting each time from parts dumped in a pile.
+- **Agentic control.** The reasoning model watches GR00T 2 work, and when a part drops or progress stalls, it fixes the scene with a pre-learned recovery skill and hands control back. Together they assembled three different toys in **292 of 300** attempts, starting each time from parts dumped in a pile.
 - **Visual steering.** Instead of only giving words, the reasoning model draws marks on GR00T 2's camera image: "grab here, put it there". On short pick-and-place steps this raised success from **40% to 92%** on the YAM arm.
 
-This split is often described as "think slow, move fast". The reasoning model thinks slowly about the plan. GR00T 2 moves quickly and precisely.
+NVIDIA sums up this split as "think slow, move fast". The reasoning model thinks slowly about the plan. GR00T 2 moves quickly and precisely.
+
+### Bonus: getting better with practice
+
+Demonstrations get GR00T 2 most of the way. For tasks that need millimetre precision, NVIDIA let it practise on the real robot with **reinforcement learning**: it tries a task many times, and the attempts that succeed are used to train it further. On four precision tasks, such as plugging in cables and chargers, success rose from 40–76% to **88–98%**.
 
 ## GR00T 2 Turbo: a version small enough for a humanoid
 
-A humanoid has to run its brain **on board**, on a much smaller computer than a desktop GPU. So NVIDIA made **GR00T 2 Turbo**. It keeps the same 2-billion-parameter transformer but compresses video much harder, so there are far fewer video tokens to predict.
+A humanoid has to run its brain **on board**, on a much smaller computer than a desktop GPU. So NVIDIA made **GR00T 2 Turbo**. Its main trick is compressing video much harder (16 times smaller in each direction instead of 8), so there are far fewer video tokens to predict. It still imagines the future and plans actions together.
 
 <figure class="diagram">
 <svg viewBox="0 0 680 230" role="img" aria-labelledby="g6-title g6-desc" xmlns="http://www.w3.org/2000/svg" font-family="Ubuntu, system-ui, sans-serif">
@@ -222,8 +226,8 @@ NVIDIA tested GR00T 2 against other leading robot models on long, multi-step tas
 
 | Benchmark | GR00T 2 | GR00T 2 Turbo | Best other model tested |
 |---|---|---|---|
-| 6 long tasks on a YAM gripper arm (toy assembly, wire into breaker…) | 71.7% | 65.0% | 12.5% (π0.5) |
-| 7 long tasks with five-fingered hands (memory module, salt filtering…) | 68.6% | 34.3% | 0.7% (GR00T 1.7) |
+| 6 long tasks on a YAM gripper arm (toy assembly, wire into breaker…) | 71.7% | 65.0% | 12.5% (π0.5, Physical Intelligence) |
+| 7 long tasks with five-fingered hands (memory module, salt filtering…) | 68.6% | 34.3% | 0.7% (GR00T 1.7, NVIDIA) |
 
 Average success rates from Table 1 of the whitepaper, up to 20 trials per task. The other models tested were π0.5, GR00T 1.7, FastWAM, MolmoAct2 and FLUX 3 Action on the YAM tasks, and GR00T 1.7 and π0.5 on the hand tasks.
 
@@ -242,7 +246,7 @@ As with any AI model on a real robot, you still need controllers, safety limits 
 
 ## Where does ROS 2 fit?
 
-Most real robots are built with **ROS 2**, the open-source framework that connects cameras, motor controllers and safety systems. A model like GR00T 2 becomes one part of that system: cameras publish images, a node runs the model and publishes action chunks, and **ros2_control** controllers move the motors within the limits engineers set. That keeps the model swappable, so you can try GR00T 2 without rewriting the rest of the robot software. Our [VLA beginners guide](/vla-for-absolute-beginners/#where-does-ros-2-fit) shows this layout in a diagram.
+Many robots are built with **ROS 2**, the open-source framework that connects cameras, motor controllers and safety systems. A model like GR00T 2 becomes one part of that system: cameras publish images, a node runs the model and publishes action chunks, and **ros2_control** controllers move the motors within the limits engineers set. That keeps the model swappable, so you can try GR00T 2 without rewriting the rest of the robot software. Our [VLA beginners guide](/vla-for-absolute-beginners/#where-does-ros-2-fit) shows this layout in a diagram.
 
 ## How to get started
 
@@ -267,7 +271,7 @@ NVIDIA's numbers use a single GeForce RTX 5090 both to run GR00T 2 in real time 
 
 ### Can it learn just from watching me?
 
-Partly. GR00T 2 learned tasks from people wearing cameras, without anyone remote-controlling the robot for that task. It still needs some general recordings of the target robot moving, so it knows its own body.
+Partly. GR00T 2 learned tasks from people wearing cameras, without anyone remote-controlling the robot for that task. It usually still needs some general recordings of the target robot moving, so it knows its own body.
 
 ## Glossary
 
@@ -284,7 +288,7 @@ Partly. GR00T 2 learned tasks from people wearing cameras, without anyone remote
 - **Embodiment:** a robot's body type, such as a gripper arm, a five-fingered hand or a humanoid.
 - **Zero-shot / few-shot:** doing a task with no examples, or with only a few examples.
 - **Fine-tuning (LoRA):** extra training on a small dataset. LoRA trains a small add-on instead of the whole model, which makes it fast.
-- **Reinforcement learning (RL):** learning by trial and error from success signals. RL on the real robot lifted three tricky insertion tasks to 88–96% success.
+- **Reinforcement learning (RL):** learning by trial and error, guided by a signal that says whether the task succeeded.
 
 ## Want to build with GR00T and robot foundation models?
 
